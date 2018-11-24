@@ -8,7 +8,7 @@ import java.util.Arrays;
  * 
  * @author Adrian Kuhn
  */
-public class SymmetricMatrix extends DenseMatrix {
+public class SymmetricMatrix extends KuhnDenseMatrix {
 
     /**
      * Construct with given size
@@ -76,7 +76,7 @@ public class SymmetricMatrix extends DenseMatrix {
      * @param square
      * @return the matrix
      */
-    public static DenseMatrix fromSquare(double[][] square) {
+    public static KuhnDenseMatrix fromSquare(double[][] square) {
         double[][] jagged = new double[square.length][];
         for (int i = 0; i < jagged.length; i++) {
             if (square[i].length != square.length) {
@@ -93,7 +93,7 @@ public class SymmetricMatrix extends DenseMatrix {
      * @param values
      * @return the matrix
      */
-    public static DenseMatrix fromJagged(double[][] values) {
+    public static KuhnDenseMatrix fromJagged(double[][] values) {
         return new SymmetricMatrix(values);
     }
 

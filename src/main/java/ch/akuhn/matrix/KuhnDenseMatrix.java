@@ -8,7 +8,7 @@ import java.util.Iterator;
  * 
  * @author Adrian Kuhn
  */
-public class DenseMatrix extends KuhnMatrix {
+public class KuhnDenseMatrix extends KuhnMatrix {
 
     protected double[][] values;
 
@@ -18,7 +18,7 @@ public class DenseMatrix extends KuhnMatrix {
      * @param values
      *            the values
      */
-    public DenseMatrix(double[][] values) {
+    public KuhnDenseMatrix(double[][] values) {
         this.values = values;
         this.assertInvariant();
     }
@@ -41,7 +41,7 @@ public class DenseMatrix extends KuhnMatrix {
      * @param rows
      * @param columns
      */
-    public DenseMatrix(int rows, int columns) {
+    public KuhnDenseMatrix(int rows, int columns) {
         this.values = makeValues(rows, columns);
         this.assertInvariant();
     }
@@ -85,12 +85,12 @@ public class DenseMatrix extends KuhnMatrix {
                     
                     @Override
                     public Vector next() {
-                        return new DenseVector(DenseMatrix.this.values[i++]);
+                        return new DenseVector(KuhnDenseMatrix.this.values[i++]);
                     }
                     
                     @Override
                     public boolean hasNext() {
-                        return i < DenseMatrix.this.values.length;
+                        return i < KuhnDenseMatrix.this.values.length;
                     }
                 };
             }
@@ -134,6 +134,6 @@ public class DenseMatrix extends KuhnMatrix {
 
     @Override
     public KuhnMatrix newInstance(int rows, int cols) {
-        return new DenseMatrix(rows, cols);
+        return new KuhnDenseMatrix(rows, cols);
     }
 }

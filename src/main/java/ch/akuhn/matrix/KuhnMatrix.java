@@ -319,7 +319,7 @@ public abstract class KuhnMatrix {
         for (int i = 0; i < n; i++) {
             data[i] = Arrays.copyOfRange(values, i * m, (i + 1) * m);
         }
-        return new DenseMatrix(data);
+        return new KuhnDenseMatrix(data);
     }
 
     /**
@@ -330,7 +330,7 @@ public abstract class KuhnMatrix {
      * @return the matrix
      */
     public static KuhnMatrix dense(int n, int m) {
-        return new DenseMatrix(n, m);
+        return new KuhnDenseMatrix(n, m);
     }
 
     /**
