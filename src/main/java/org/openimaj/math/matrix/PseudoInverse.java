@@ -31,7 +31,9 @@ package org.openimaj.math.matrix;
 
 import ch.akuhn.matrix.KuhnMatrix;
 import gov.nist.math.jama.JamaMatrix;
+import no.uib.cipr.matrix.DenseMatrix;
 import no.uib.cipr.matrix.NotConvergedException;
+import no.uib.cipr.matrix.SVD;
 
 /**
  * Methods for calculating the Moore-Penrose Pseudo-Inverse
@@ -48,11 +50,11 @@ public class PseudoInverse {
      * @return the pseudo-inverse.
      */
     public static JamaMatrix pseudoInverse(JamaMatrix matrix) {
-        final no.uib.cipr.matrix.DenseMatrix mjtA = new no.uib.cipr.matrix.DenseMatrix(matrix.getArray());
-        no.uib.cipr.matrix.SVD svd;
+        final DenseMatrix mjtA = new DenseMatrix(matrix.getArray());
+        SVD svd;
 
         try {
-            svd = no.uib.cipr.matrix.SVD.factorize(mjtA);
+            svd = SVD.factorize(mjtA);
         } catch (NotConvergedException e) {
             throw new RuntimeException(e);
         }
@@ -61,8 +63,9 @@ public class PseudoInverse {
 
         final double[] Sarr = svd.getS();
         for (int i = 0; i < svd.getS().length; i++) {
-            if (Sarr[i] != 0.0)
+            if (Sarr[i] != 0.0) {
                 Sinv.set(i, i, 1.0 / Sarr[i]);
+            }
         }
 
         final JamaMatrix Vt = new JamaMatrix(svd.getVt().numRows(), svd.getVt().numColumns());
@@ -111,8 +114,9 @@ public class PseudoInverse {
 
         final JamaMatrix Sinv = new JamaMatrix(tsvd.S.length, tsvd.S.length);
         for (int i = 0; i < tsvd.S.length; i++) {
-            if (tsvd.S[i] != 0.0)
+            if (tsvd.S[i] != 0.0) {
                 Sinv.set(i, i, 1.0 / tsvd.S[i]);
+            }
         }
 
         final JamaMatrix pinv = tsvd.Vt.transpose().times(Sinv).times(tsvd.U.transpose());

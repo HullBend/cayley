@@ -4,6 +4,23 @@
 	<groupId>com.github.hullbend</groupId>
 	<artifactId>cayley</artifactId>
 	<version>1.0.0</version>
+	<name>com.github.hullbend:cayley</name>
+	<description>Linear Algebra utilities for Java</description>
+	<url>https://github.com/HullBend/cayley/</url>
+
+	<developers>
+		<developer>
+			<name>Sartorius</name>
+			<email>sdubnotal@gmail.com</email>
+			<organization>com.github.hullbend</organization>
+			<organizationUrl>https://github.com/HullBend</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<url>https://github.com/HullBend/cayley</url>
+		<connection>scm:git:https://github.com/HullBend/cayley.git</connection>
+		<developerConnection>scm:git:https://github.com/HullBend/cayley.git</developerConnection>
+	</scm>
 
 	<dependencies>
 		<dependency>
