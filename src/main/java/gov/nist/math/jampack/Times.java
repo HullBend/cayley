@@ -1,5 +1,8 @@
 package gov.nist.math.jampack;
 
+/**
+ * Times provides static methods to compute matrix products.
+ */
 public final class Times {
 
     /**
