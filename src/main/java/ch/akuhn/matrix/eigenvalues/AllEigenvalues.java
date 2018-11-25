@@ -141,4 +141,8 @@ public class AllEigenvalues extends Eigenvalues {
         }
         return new double[lwork];
     }
+
+    static {
+        System.setProperty("com.github.fommil.netlib.LAPACK", "com.github.fommil.netlib.NativeRefLAPACK");
+    }
 }
