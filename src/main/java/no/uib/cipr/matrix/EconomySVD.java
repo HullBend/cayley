@@ -84,8 +84,8 @@ public class EconomySVD {
         iwork = new int[8 * Math.min(m, n)];
 
         // Query optimal workspace
-        final double[] worksize = new double[1];
-        final intW info = new intW(0);
+        double[] worksize = new double[1];
+        intW info = new intW(0);
         LAPACK.getInstance().dgesdd(JobSVD.Part.netlib(), m, n, new double[0],
                 Matrices.ld(m), new double[0], new double[0], U.numRows,
                 new double[0], Vt.numRows, worksize, -1, iwork, info);
@@ -95,8 +95,9 @@ public class EconomySVD {
         if (info.val != 0) {
             // 'S' => LWORK >= min(M,N)*(6+4*min(M,N))+max(M,N)
             lwork = Math.min(m, n) * (6 + 4 * Math.min(m, n)) + Math.max(m, n);
-        } else
+        } else {
             lwork = (int) worksize[0];
+        }
 
         lwork = Math.max(lwork, 1);
         work = new double[lwork];
@@ -124,13 +125,13 @@ public class EconomySVD {
      * @throws NotConvergedException
      */
     public EconomySVD factor(DenseMatrix A) throws NotConvergedException {
-        if (A.numRows() != m)
+        if (A.numRows() != m) {
             throw new IllegalArgumentException("A.numRows() != m");
-        else if (A.numColumns() != n)
+        } else if (A.numColumns() != n) {
             throw new IllegalArgumentException("A.numColumns() != n");
+        }
 
-        final intW info = new intW(0);
-
+        intW info = new intW(0);
         LAPACK.getInstance().dgesdd(JobSVD.Part.netlib(), m, n,
                 A.getData(), A.numRows,
                 S,
@@ -138,11 +139,12 @@ public class EconomySVD {
                 Vt.getData(), Vt.numRows,
                 work, work.length, iwork, info);
 
-        if (info.val > 0)
+        if (info.val > 0) {
             throw new NotConvergedException(
                     NotConvergedException.Reason.Iterations);
-        else if (info.val < 0)
+        } else if (info.val < 0) {
             throw new IllegalArgumentException();
+        }
 
         return this;
     }
