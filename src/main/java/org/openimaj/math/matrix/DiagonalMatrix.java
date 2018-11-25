@@ -33,6 +33,8 @@ import ch.akuhn.matrix.KuhnMatrix;
 import ch.akuhn.matrix.Vector;
 
 /**
+ * A diagonal specialization of Adrian Kuhn's {@link KuhnMatrix}.
+ * <p>
  * @author Sina Samangooei (ss@ecs.soton.ac.uk)
  */
 public class DiagonalMatrix extends KuhnMatrix {
