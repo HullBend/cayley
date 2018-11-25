@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class SymetricMatrixTest {
+public class SymmetricMatrixTest {
 
     @Test
     public void shouldMultiplyMatrixWithVector() {
