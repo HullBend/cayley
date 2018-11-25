@@ -200,7 +200,7 @@ public abstract class Vector {
      * @return the vector
      */
     public static Vector sparse(int size) {
-        return new SparseVector(size);
+        return new KuhnSparseVector(size);
     }
 
     /**

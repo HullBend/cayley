@@ -61,7 +61,7 @@ public class SparseMatrix extends KuhnMatrix {
     public int addColumn() {
         columns++;
         for (Vector each : rows) {
-            ((SparseVector) each).resizeTo(columns);
+            ((KuhnSparseVector) each).resizeTo(columns);
         }
         return columns - 1;
     }
@@ -72,12 +72,12 @@ public class SparseMatrix extends KuhnMatrix {
      * @return number of rows BEFORE new one was added
      */
     public int addRow() {
-        rows.add(new SparseVector(columns));
+        rows.add(new KuhnSparseVector(columns));
         return rowCount() - 1;
     }
 
     protected int addRow(double[] values) {
-        rows.add(new SparseVector(values));
+        rows.add(new KuhnSparseVector(values));
         return rowCount() - 1;
     }
 
@@ -151,13 +151,13 @@ public class SparseMatrix extends KuhnMatrix {
     }
 
     /**
-     * Sets the row, no check is made on {@link SparseVector#size()} Use with
+     * Sets the row, no check is made on {@link KuhnSparseVector#size()} Use with
      * care.
      * 
      * @param row
      * @param values
      */
-    public void setRow(int row, SparseVector values) {
+    public void setRow(int row, KuhnSparseVector values) {
         rows.set(row, values);
     }
 
@@ -175,7 +175,7 @@ public class SparseMatrix extends KuhnMatrix {
      */
     public void trim() {
         for (Vector each : rows) {
-            ((SparseVector) each).trim();
+            ((KuhnSparseVector) each).trim();
         }
     }
 
@@ -233,7 +233,7 @@ public class SparseMatrix extends KuhnMatrix {
         double[] y = new double[this.rowCount()];
         double[] x = ((DenseVector) dense).values;
         for (int i = 0; i < y.length; i++) {
-            SparseVector row = (SparseVector) rows.get(i);
+            KuhnSparseVector row = (KuhnSparseVector) rows.get(i);
             double sum = 0.0;
             for (int k = 0; k < row.used; k++) {
                 sum += x[row.keys[k]] * row.values[k];
@@ -251,7 +251,7 @@ public class SparseMatrix extends KuhnMatrix {
         double[] y = new double[this.columnCount()];
         double[] x = ((DenseVector) dense).values;
         for (int i = 0; i < x.length; i++) {
-            SparseVector row = (SparseVector) rows.get(i);
+            KuhnSparseVector row = (KuhnSparseVector) rows.get(i);
             for (int k = 0; k < row.used; k++) {
                 y[row.keys[k]] += x[i] * row.values[k];
             }

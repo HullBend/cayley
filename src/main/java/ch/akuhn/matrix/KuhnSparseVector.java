@@ -9,13 +9,13 @@ import java.util.NoSuchElementException;
  * 
  * @author Adrian Kuhn
  */
-public class SparseVector extends Vector {
+public class KuhnSparseVector extends Vector {
 
     /* package */int[] keys;
     /* package */int size, used;
     /* package */double[] values;
 
-    protected SparseVector(double[] values) {
+    protected KuhnSparseVector(double[] values) {
         this(values.length);
         for (int n = 0; n < values.length; n++) {
             if (values[n] != 0.0) {
@@ -24,7 +24,7 @@ public class SparseVector extends Vector {
         }
     }
 
-    protected SparseVector(int size) {
+    protected KuhnSparseVector(int size) {
         this(size, 10);
     }
 
@@ -36,7 +36,7 @@ public class SparseVector extends Vector {
      * @param capacity
      *            the number of expected non-zero elements
      */
-    public SparseVector(int size, int capacity) {
+    public KuhnSparseVector(int size, int capacity) {
         this.size = size;
         this.keys = new int[capacity];
         this.values = new double[capacity];
@@ -89,7 +89,7 @@ public class SparseVector extends Vector {
 
     @Override
     public boolean equals(Object other) {
-        return other instanceof SparseVector && this.equals((SparseVector) other);
+        return other instanceof KuhnSparseVector && this.equals((KuhnSparseVector) other);
     }
 
     /**
@@ -98,7 +98,7 @@ public class SparseVector extends Vector {
      * @param v
      * @return true if equal; false otherwise
      */
-    public boolean equals(SparseVector v) {
+    public boolean equals(KuhnSparseVector v) {
         return size == v.size &&
                 used == v.used &&
                 Arrays.equals(keys, v.keys) &&
@@ -214,7 +214,7 @@ public class SparseVector extends Vector {
 
     @Override
     public Vector times(double scalar) {
-        SparseVector y = new SparseVector(size);
+        KuhnSparseVector y = new KuhnSparseVector(size);
         y.keys = Arrays.copyOf(keys, size);
         y.values = Arrays.copyOf(values, size);
         for (int i = 0; i < values.length; i++) {
