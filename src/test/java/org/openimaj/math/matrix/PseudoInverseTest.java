@@ -84,10 +84,10 @@ public class PseudoInverseTest {
     public void testPinv() {
         JamaMatrix p = PseudoInverse.pseudoInverse(matrix);
 
-        assertTrue(matrixEquals(p, pinv, 0.05));
+        assertTrue(MatrixUtils.equals(p, pinv, 0.05));
 
         JamaMatrix pp = PseudoInverse.pseudoInverse(p);
-        assertTrue(matrixEquals(pp, matrix, 0.00001));
+        assertTrue(MatrixUtils.equals(pp, matrix, 0.00001));
     }
 
     /**
@@ -97,7 +97,7 @@ public class PseudoInverseTest {
     public void testPinvRnk3() {
         JamaMatrix p = PseudoInverse.pseudoInverse(matrix, 3);
 
-        assertTrue(matrixEquals(p, pinv, 0.05));
+        assertTrue(MatrixUtils.equals(p, pinv, 0.05));
     }
 
     /**
@@ -107,7 +107,7 @@ public class PseudoInverseTest {
     public void testPinvRnk2() {
         JamaMatrix p = PseudoInverse.pseudoInverse(matrix, 2);
 
-        assertTrue(matrixEquals(p, pinvRnk2, 0.05));
+        assertTrue(MatrixUtils.equals(p, pinvRnk2, 0.05));
     }
 
     /**
@@ -117,37 +117,6 @@ public class PseudoInverseTest {
     public void testPinvRnk1() {
         JamaMatrix p = PseudoInverse.pseudoInverse(matrix, 1);
 
-        assertTrue(matrixEquals(p, pinvRnk1, 0.05));
-    }
-
-    /**
-     * Check if two matrices are equal
-     * 
-     * @param m1
-     *            first matrix
-     * @param m2
-     *            second matrix
-     * @param eps
-     *            epsilon for checking values
-     * @return true if matrices have same size and all elements are equal within
-     *         eps; false otherwise
-     */
-    private static boolean matrixEquals(JamaMatrix m1, JamaMatrix m2, double eps) {
-        double[][] a1 = m1.getArray();
-        double[][] a2 = m2.getArray();
-
-        if (a1.length != a2.length || a1[0].length != a2[0].length) {
-            return false;
-        }
-
-        for (int r = 0; r < a1.length; r++) {
-            for (int c = 0; c < a1[r].length; c++) {
-                if (Math.abs(a1[r][c] - a2[r][c]) > eps) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
+        assertTrue(MatrixUtils.equals(p, pinvRnk1, 0.05));
     }
 }
