@@ -1,9 +1,9 @@
 package gov.nist.math.jama;
 
-public class Maths {
+final class Maths {
 
     /** sqrt(a^2 + b^2) without under/overflow. **/
-    public static double hypot(double a, double b) {
+    static double hypot(double a, double b) {
         double r;
         if (Math.abs(a) > Math.abs(b)) {
             r = b / a;
