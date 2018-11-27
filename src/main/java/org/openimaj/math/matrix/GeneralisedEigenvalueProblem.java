@@ -281,8 +281,4 @@ public final class GeneralisedEigenvalueProblem {
         }
         return range;
     }
-
-    static {
-        System.setProperty("com.github.fommil.netlib.LAPACK", "com.github.fommil.netlib.NativeRefLAPACK");
-    }
 }

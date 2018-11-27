@@ -1711,7 +1711,4 @@ public final class MatrixUtils {
     }
 
     private static final Random r = new Random();
-    static {
-        System.setProperty("com.github.fommil.netlib.LAPACK", "com.github.fommil.netlib.NativeRefLAPACK");
-    }
 }

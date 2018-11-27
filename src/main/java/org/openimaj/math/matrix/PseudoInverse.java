@@ -123,8 +123,4 @@ public class PseudoInverse {
 
         return pinv;
     }
-
-    static {
-        System.setProperty("com.github.fommil.netlib.LAPACK", "com.github.fommil.netlib.NativeRefLAPACK");
-    }
 }

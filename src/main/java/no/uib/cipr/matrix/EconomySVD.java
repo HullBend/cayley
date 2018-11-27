@@ -177,8 +177,4 @@ public class EconomySVD {
     public double[] getS() {
         return S;
     }
-
-    static {
-        System.setProperty("com.github.fommil.netlib.LAPACK", "com.github.fommil.netlib.NativeRefLAPACK");
-    }
 }

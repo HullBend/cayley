@@ -278,9 +278,4 @@ public abstract class FewEigenvalues extends Eigenvalues {
     }
 
     protected abstract Vector callback(Vector vector);
-
-    static {
-        System.setProperty("com.github.fommil.netlib.ARPACK", "com.github.fommil.netlib.NativeRefARPACK");
-        System.setProperty("com.github.fommil.netlib.LAPACK", "com.github.fommil.netlib.NativeRefLAPACK");
-    }
 }
