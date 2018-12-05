@@ -8,6 +8,6 @@ Linear Algebra utilities for Java
 <dependency>
     <groupId>com.github.hullbend</groupId>
     <artifactId>cayley</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
