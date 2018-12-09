@@ -131,7 +131,7 @@ public class JamaMatrix implements Cloneable, java.io.Serializable {
         cols = A[0].length;
         for (int i = 0; i < rows; i++) {
             if (A[i].length != cols) {
-                throw new IllegalArgumentException("All rows must have the same length.");
+                throw new IllegalArgumentException("All rows must have the same length");
             }
         }
         this.A = A;
@@ -168,7 +168,7 @@ public class JamaMatrix implements Cloneable, java.io.Serializable {
         this.rows = m;
         cols = (m != 0 ? vals.length / m : 0);
         if (m * cols != vals.length) {
-            throw new IllegalArgumentException("Array length must be a multiple of m.");
+            throw new IllegalArgumentException("Array length must be a multiple of m");
         }
         A = new double[m][cols];
         for (int i = 0; i < m; i++) {
@@ -197,7 +197,7 @@ public class JamaMatrix implements Cloneable, java.io.Serializable {
         double[][] C = X.getArray();
         for (int i = 0; i < m; i++) {
             if (A[i].length != n) {
-                throw new IllegalArgumentException("All rows must have the same length.");
+                throw new IllegalArgumentException("All rows must have the same length");
             }
             for (int j = 0; j < n; j++) {
                 C[i][j] = A[i][j];
@@ -860,7 +860,7 @@ public class JamaMatrix implements Cloneable, java.io.Serializable {
      */
     public JamaMatrix times(JamaMatrix B) {
         if (B.rows != cols) {
-            throw new IllegalArgumentException("Matrix inner dimensions must agree.");
+            throw new IllegalArgumentException("Matrix inner dimensions must agree");
         }
         JamaMatrix X = new JamaMatrix(rows, B.cols);
         double[][] C = X.getArray();
@@ -1113,14 +1113,15 @@ public class JamaMatrix implements Cloneable, java.io.Serializable {
      * @see java.text.DecimalFormat#setDecimalFormatSymbols
      */
     public void print(PrintWriter output, NumberFormat format, int width) {
-        output.println(); // start on new line.
+        output.println(); // start on new line
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 String s = format.format(A[i][j]); // format the number
-                int padding = Math.max(1, width - s.length()); // At *least* 1
-                                                                // space
-                for (int k = 0; k < padding; k++)
+                // At *least* 1 space
+                int padding = Math.max(1, width - s.length());
+                for (int k = 0; k < padding; k++) {
                     output.print(' ');
+                }
                 output.print(s);
             }
             output.println();
@@ -1155,32 +1156,37 @@ public class JamaMatrix implements Cloneable, java.io.Serializable {
         // Ignore initial empty lines
         while (tokenizer.nextToken() == StreamTokenizer.TT_EOL)
             ;
-        if (tokenizer.ttype == StreamTokenizer.TT_EOF)
-            throw new java.io.IOException("Unexpected EOF on matrix read.");
+        if (tokenizer.ttype == StreamTokenizer.TT_EOF) {
+            throw new java.io.IOException("Unexpected EOF on matrix read");
+        }
         do {
-            vD.addElement(Double.valueOf(tokenizer.sval)); // Read & store 1st
-                                                            // row.
+            // Read & store 1st row
+            vD.addElement(Double.valueOf(tokenizer.sval));
         } while (tokenizer.nextToken() == StreamTokenizer.TT_WORD);
 
         int n = vD.size(); // Now we've got the number of columns!
         double row[] = new double[n];
-        for (int j = 0; j < n; j++) // extract the elements of the 1st row.
+        for (int j = 0; j < n; j++) {
+            // extract the elements of the 1st row
             row[j] = vD.elementAt(j).doubleValue();
+        }
         java.util.Vector<double[]> v = new java.util.Vector<double[]>();
-        v.addElement(row); // Start storing rows instead of columns.
+        v.addElement(row); // Start storing rows instead of columns
         while (tokenizer.nextToken() == StreamTokenizer.TT_WORD) {
             // While non-empty lines
             v.addElement(row = new double[n]);
             int j = 0;
             do {
-                if (j >= n)
-                    throw new java.io.IOException("Row " + v.size() + " is too long.");
+                if (j >= n) {
+                    throw new java.io.IOException("Row " + v.size() + " is too long");
+                }
                 row[j++] = Double.valueOf(tokenizer.sval).doubleValue();
             } while (tokenizer.nextToken() == StreamTokenizer.TT_WORD);
-            if (j < n)
-                throw new java.io.IOException("Row " + v.size() + " is too short.");
+            if (j < n) {
+                throw new java.io.IOException("Row " + v.size() + " is too short");
+            }
         }
-        int m = v.size(); // Now we've got the number of rows.
+        int m = v.size(); // Now we've got the number of rows
         double[][] A = new double[m][];
         v.copyInto(A); // copy the rows out of the vector
         return new JamaMatrix(A);
@@ -1194,7 +1200,7 @@ public class JamaMatrix implements Cloneable, java.io.Serializable {
 
     private void checkMatrixDimensions(JamaMatrix B) {
         if (B.rows != rows || B.cols != cols) {
-            throw new IllegalArgumentException("Matrix dimensions must agree.");
+            throw new IllegalArgumentException("Matrix dimensions must agree");
         }
     }
 
