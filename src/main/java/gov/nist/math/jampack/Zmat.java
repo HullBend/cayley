@@ -16,14 +16,8 @@ public final class Zmat {
     /** The imaginary part of the matrix */
     final double im[][];
 
-    /** The upper row index */
-    public final int rx;
-
     /** The number of rows */
     public final int nr;
-
-    /** The upper column index */
-    public final int cx;
 
     /** The number of columns */
     public final int nc;
@@ -45,8 +39,6 @@ public final class Zmat {
         if (nr != im.length || nc != im[0].length) {
             throw new ZException("Inconsistent array dimensions");
         }
-        rx = nr;
-        cx = nc;
         this.re = new double[nr][nc];
         this.im = new double[nr][nc];
         for (int i = 0; i < nr; i++) {
@@ -63,8 +55,6 @@ public final class Zmat {
     public Zmat(Z A[][]) {
         nr = A.length;
         nc = A[0].length;
-        rx = nr;
-        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++) {
@@ -82,8 +72,6 @@ public final class Zmat {
     public Zmat(double A[][]) {
         nr = A.length;
         nc = A[0].length;
-        rx = nr;
-        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++) {
@@ -100,8 +88,6 @@ public final class Zmat {
     public Zmat(Zmat A) {
         nr = A.nr;
         nc = A.nc;
-        rx = nr;
-        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++) {
@@ -118,8 +104,6 @@ public final class Zmat {
     public Zmat(Z1 A) {
         nr = A.n;
         nc = 1;
-        rx = nr;
-        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++) {
@@ -134,8 +118,6 @@ public final class Zmat {
     public Zmat(Zdiagmat D) {
         nr = D.order;
         nc = D.order;
-        rx = nr;
-        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++) {
@@ -155,8 +137,6 @@ public final class Zmat {
         this.isPosSemiDefinite = isPosSemiDefinite;
         nr = nrow;
         nc = ncol;
-        rx = nr;
-        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++) {

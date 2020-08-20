@@ -79,21 +79,21 @@ public final class Zsvd {
         U = Eye.o(X.nr);
         V = Eye.o(X.nc);
 
-        m = Math.min(X.rx, X.cx);
+        m = Math.min(X.nr, X.nc);
 
         /*
          * Reduction to Bidiagonal form.
          */
         for (k = 1; k <= m; k++) {
 
-            h = House.genc(X, k, X.rx, k);
-            House.ua(h, X, k, X.rx, k + 1, X.cx, temp);
-            House.au(U, h, 1, U.rx, k, U.cx, temp);
+            h = House.genc(X, k, X.nr, k);
+            House.ua(h, X, k, X.nr, k + 1, X.nc, temp);
+            House.au(U, h, 1, U.nr, k, U.nc, temp);
 
-            if (k != X.cx) {
-                h = House.genr(X, k, k + 1, X.cx);
-                House.au(X, h, k + 1, X.rx, k + 1, X.cx, temp);
-                House.au(V, h, 1, V.rx, k + 1, V.cx, temp);
+            if (k != X.nc) {
+                h = House.genr(X, k, k + 1, X.nc);
+                House.au(X, h, k + 1, X.nr, k + 1, X.nc, temp);
+                House.au(V, h, 1, V.nr, k + 1, V.nc, temp);
             }
         }
 
@@ -107,27 +107,27 @@ public final class Zsvd {
             X.put(k, k, new Z(axkk));
             d[kk] = axkk;
             scale.div(scale.conj(xkk), axkk);
-            if (k < X.cx) {
+            if (k < X.nc) {
                 xkk1 = X.get(k, k + 1);
                 X.put(k, k + 1, xkk1.times(scale, xkk1));
             }
             scale.conj(scale);
-            for (i = 1; i <= U.rx; i++) {
+            for (i = 1; i <= U.nr; i++) {
                 U.put(i, k, zr.times(U.get(i, k), scale));
             }
 
-            if (k < X.cx) {
+            if (k < X.nc) {
 
                 xkk1 = X.get(k, k + 1);
                 axkk1 = Z.abs(xkk1);
                 X.put(k, k + 1, new Z(axkk1));
                 e[kk] = axkk1;
                 scale.div(scale.conj(xkk1), axkk1);
-                if (k < X.rx) {
+                if (k < X.nr) {
                     xk1k1 = X.get(k + 1, k + 1);
                     X.put(k + 1, k + 1, xk1k1.times(scale, xk1k1));
                 }
-                for (i = 1; i <= V.rx; i++) {
+                for (i = 1; i <= V.nr; i++) {
                     V.put(i, k + 1, zr.times(V.get(i, k + 1), scale));
                 }
             }
@@ -147,8 +147,8 @@ public final class Zsvd {
                     t = P.sr * e[k - 1];
                     e[k - 1] = P.c * e[k - 1];
                 }
-                Rot.ap(V, P, 1, V.rx, k + 1, X.rx + 1);
-                Rot.ap(X, P, 1, X.rx, k + 1, X.rx + 1);
+                Rot.ap(V, P, 1, V.nr, k + 1, X.nr + 1);
+                Rot.ap(X, P, 1, X.nr, k + 1, X.nr + 1);
             }
         }
         /*
@@ -222,13 +222,13 @@ public final class Zsvd {
                 d[i] = t;
                 t = -P.sr * d[i + 1];
                 d[i + 1] = P.c * d[i + 1];
-                Rot.ap(V, P, 1, V.rx, 1 + i, 1 + i + 1);
+                Rot.ap(V, P, 1, V.nr, 1 + i, 1 + i + 1);
                 Rot.genc(d[i], t, P);
                 d[i] = P.zr;
                 t = P.c * e[i] + P.sr * d[i + 1];
                 d[i + 1] = P.c * d[i + 1] - P.sr * e[i];
                 e[i] = t;
-                Rot.aph(U, P, 1, U.rx, 1 + i, 1 + i + 1);
+                Rot.aph(U, P, 1, U.nr, 1 + i, 1 + i + 1);
                 if (i != iu - 1) {
                     t = P.sr * e[i + 1];
                     e[i + 1] = P.c * e[i + 1];

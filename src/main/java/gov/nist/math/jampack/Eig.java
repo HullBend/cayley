@@ -85,7 +85,7 @@ public final class Eig {
             }
 
             /* Scale the vector so its norm is one. */
-            scale = 1.0 / Norm.fro(X, 1, X.rx, 1 + k, 1 + k);
+            scale = 1.0 / Norm.fro(X, 1, X.nr, 1 + k, 1 + k);
             for (i = 0; i < X.nr; i++) {
                 X.re[i][k] = scale * X.re[i][k];
                 X.im[i][k] = scale * X.im[i][k];

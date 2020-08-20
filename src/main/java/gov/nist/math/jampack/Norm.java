@@ -69,7 +69,7 @@ public final class Norm {
      * @return The Frobenius norm of A
      */
     public static double fro(Zmat A) {
-        return Norm.fro(A, 1, A.rx, 1, A.cx);
+        return Norm.fro(A, 1, A.nr, 1, A.nc);
     }
 
     /**

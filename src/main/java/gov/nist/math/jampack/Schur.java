@@ -50,7 +50,7 @@ public final class Schur {
         T = new Zmat(H.H);
         U = H.U;
 
-        iu = T.rx;
+        iu = T.nr;
         iter = 0;
         while (true) {
 
@@ -117,9 +117,9 @@ public final class Schur {
             q.eq(T.get(il + 1, il));
             Rot.genc(p.re, p.im, q.re, q.im, P);
             for (i = il; i < iu; i++) {
-                Rot.pa(P, T, i, i + 1, i, T.cx);
+                Rot.pa(P, T, i, i + 1, i, T.nc);
                 Rot.aph(T, P, 1, Math.min(i + 2, iu), i, i + 1);
-                Rot.aph(U, P, 1, U.rx, i, i + 1);
+                Rot.aph(U, P, 1, U.nr, i, i + 1);
                 if (i != iu - 1) {
                     Rot.genc(T, i + 1, i + 2, i, P);
                 }
@@ -169,11 +169,11 @@ public final class Schur {
 
             Z1 work = new Z1(H.nr);
 
-            for (int k = 1; k <= H.cx - 2; k++) {
-                Z1 u = House.genc(H, k + 1, H.rx, k);
-                House.ua(u, H, k + 1, H.rx, k + 1, H.cx, work);
-                House.au(H, u, 1, H.rx, k + 1, H.cx, work);
-                House.au(U, u, 1, U.rx, k + 1, U.cx, work);
+            for (int k = 1; k <= H.nc - 2; k++) {
+                Z1 u = House.genc(H, k + 1, H.nr, k);
+                House.ua(u, H, k + 1, H.nr, k + 1, H.nc, work);
+                House.au(H, u, 1, H.nr, k + 1, H.nc, work);
+                House.au(U, u, 1, U.nr, k + 1, U.nc, work);
             }
         }
     }
