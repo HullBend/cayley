@@ -15,8 +15,8 @@ public final class Times {
      * @return zA
      */
     public static Zmat o(Z z, Zmat A) {
-        Zmat B = new Zmat(A.nrow, A.ncol);
-        for (int i = 0; i < A.nrow; i++)
+        Zmat B = new Zmat(A.nr, A.ncol);
+        for (int i = 0; i < A.nr; i++)
             for (int j = 0; j < A.ncol; j++) {
                 B.re[i][j] = z.re * A.re[i][j] - z.im * A.im[i][j];
                 B.im[i][j] = z.im * A.re[i][j] + z.re * A.im[i][j];
@@ -36,10 +36,10 @@ public final class Times {
      *                for unconformity
      */
     public static Zmat o(Zmat A, Zmat B) throws ZException {
-        if (A.ncol != B.nrow)
+        if (A.ncol != B.nr)
             throw new ZException("Unconformity in product");
-        Zmat C = new Zmat(A.nrow, B.ncol);
-        for (int i = 0; i < A.nrow; i++)
+        Zmat C = new Zmat(A.nr, B.ncol);
+        for (int i = 0; i < A.nr; i++)
             for (int k = 0; k < A.ncol; k++)
                 for (int j = 0; j < B.ncol; j++) {
                     C.re[i][j] = C.re[i][j] + A.re[i][k] * B.re[k][j] - A.im[i][k] * B.im[k][j];
@@ -57,7 +57,7 @@ public final class Times {
      */
     public static Zmat aha(Zmat A) {
         Zmat C = new Zmat(A.ncol, A.ncol, true);
-        for (int k = 0; k < A.nrow; k++) {
+        for (int k = 0; k < A.nr; k++) {
             for (int i = 0; i < A.ncol; i++) {
                 C.re[i][i] = C.re[i][i] + A.re[k][i] * A.re[k][i] + A.im[k][i] * A.im[k][i];
                 C.im[i][i] = 0.;
@@ -84,13 +84,13 @@ public final class Times {
      * @return AA<sup>H</sup>
      */
     public static Zmat aah(Zmat A) {
-        Zmat C = new Zmat(A.nrow, A.nrow, true);
-        for (int i = 0; i < A.nrow; i++) {
+        Zmat C = new Zmat(A.nr, A.nr, true);
+        for (int i = 0; i < A.nr; i++) {
             for (int k = 0; k < A.ncol; k++) {
                 C.re[i][i] = C.re[i][i] + A.re[i][k] * A.re[i][k] + A.im[i][k] * A.im[i][k];
             }
             C.im[i][i] = 0.;
-            for (int j = i + 1; j < A.nrow; j++) {
+            for (int j = i + 1; j < A.nr; j++) {
                 for (int k = 0; k < A.ncol; k++) {
                     C.re[i][j] = C.re[i][j] + A.re[i][k] * A.re[j][k] + A.im[i][k] * A.im[j][k];
                     C.im[i][j] = C.im[i][j] - A.re[i][k] * A.im[j][k] + A.im[i][k] * A.re[j][k];
@@ -155,11 +155,11 @@ public final class Times {
      *                for unconformity
      */
     public static Zmat o(Zdiagmat D, Zmat A) throws ZException {
-        if (D.order != A.nrow) {
+        if (D.order != A.nr) {
             throw new ZException("Unconformity in product.");
         }
-        Zmat B = new Zmat(A.nrow, A.ncol);
-        for (int i = 0; i < A.nrow; i++) {
+        Zmat B = new Zmat(A.nr, A.ncol);
+        for (int i = 0; i < A.nr; i++) {
             for (int j = 0; j < A.nc; j++) {
                 B.re[i][j] = D.re[i] * A.re[i][j] - D.im[i] * A.im[i][j];
                 B.im[i][j] = D.re[i] * A.im[i][j] + D.im[i] * A.re[i][j];
@@ -183,8 +183,8 @@ public final class Times {
         if (D.order != A.ncol) {
             throw new ZException("Unconformity in product.");
         }
-        Zmat B = new Zmat(A.nrow, A.ncol);
-        for (int i = 0; i < A.nrow; i++) {
+        Zmat B = new Zmat(A.nr, A.ncol);
+        for (int i = 0; i < A.nr; i++) {
             for (int j = 0; j < A.ncol; j++) {
                 B.re[i][j] = D.re[j] * A.re[i][j] - D.im[j] * A.im[i][j];
                 B.im[i][j] = D.re[j] * A.im[i][j] + D.im[j] * A.re[i][j];

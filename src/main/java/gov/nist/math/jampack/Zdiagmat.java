@@ -78,7 +78,7 @@ public final class Zdiagmat {
             if (k >= A.ncol) {
                 throw new ZException("Diagonal out of range.");
             }
-            order = Math.min(A.nrow, A.ncol - k);
+            order = Math.min(A.nr, A.ncol - k);
             re = new double[order];
             im = new double[order];
             for (int i = 0; i < order; i++) {
@@ -87,10 +87,10 @@ public final class Zdiagmat {
             }
         } else {
             k = -k;
-            if (k >= A.nrow) {
+            if (k >= A.nr) {
                 throw new ZException("Diagonal out of range.");
             }
-            order = Math.min(A.nrow - k, A.ncol);
+            order = Math.min(A.nr - k, A.ncol);
             re = new double[order];
             im = new double[order];
             for (int i = 0; i < order; i++) {

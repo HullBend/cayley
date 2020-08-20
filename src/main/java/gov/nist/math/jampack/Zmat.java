@@ -10,9 +10,6 @@ public final class Zmat {
 
     boolean isPosSemiDefinite = false;
 
-    /** The number of rows */
-    final int nrow;
-
     /** The number of columns */
     final int ncol;
 
@@ -46,13 +43,12 @@ public final class Zmat {
      *                if the dimensions of re and im do not match
      */
     public Zmat(double re[][], double im[][]) throws ZException {
-        nrow = re.length;
+    	nr = re.length;
         ncol = re[0].length;
-        if (nrow != im.length || ncol != im[0].length)
+        if (nr != im.length || ncol != im[0].length)
             throw new ZException("Inconsistent array dimensions");
-        rx = nrow;
+        rx = nr;
         cx = ncol;
-        nr = nrow;
         nc = ncol;
         this.re = new double[nr][nc];
         this.im = new double[nr][nc];
@@ -67,11 +63,10 @@ public final class Zmat {
      * Creates a Zmat and initializes it to an array of class Z.
      */
     public Zmat(Z A[][]) {
-        nrow = A.length;
+        nr = A.length;
         ncol = A[0].length;
-        rx = nrow;
+        rx = nr;
         cx = ncol;
-        nr = nrow;
         nc = ncol;
         re = new double[nr][nc];
         im = new double[nr][nc];
@@ -87,11 +82,10 @@ public final class Zmat {
      * double. The imaginary part is set to zero.
      */
     public Zmat(double A[][]) {
-        nrow = A.length;
+        nr = A.length;
         ncol = A[0].length;
-        rx = nrow;
+        rx = nr;
         cx = ncol;
-        nr = nrow;
         nc = ncol;
         re = new double[nr][nc];
         im = new double[nr][nc];
@@ -106,11 +100,10 @@ public final class Zmat {
      * Creates a Zmat and intitializes it to a Zmat.
      */
     public Zmat(Zmat A) {
-        nrow = A.nrow;
+        nr = A.nr;
         ncol = A.ncol;
-        rx = nrow;
+        rx = nr;
         cx = ncol;
-        nr = nrow;
         nc = ncol;
         re = new double[nr][nc];
         im = new double[nr][nc];
@@ -125,11 +118,10 @@ public final class Zmat {
      * Creates a Zmat and initialize it to a Z1.
      */
     public Zmat(Z1 A) {
-        nrow = A.n;
+        nr = A.n;
         ncol = 1;
-        rx = nrow;
+        rx = nr;
         cx = ncol;
-        nr = nrow;
         nc = ncol;
         re = new double[nr][nc];
         im = new double[nr][nc];
@@ -143,11 +135,10 @@ public final class Zmat {
      * Creates a Zmat and initialize it to a Zdiagmat.
      */
     public Zmat(Zdiagmat D) {
-        nrow = D.order;
+        nr = D.order;
         ncol = D.order;
-        rx = nrow;
+        rx = nr;
         cx = ncol;
-        nr = nrow;
         nc = ncol;
         re = new double[nr][nc];
         im = new double[nr][nc];
@@ -166,11 +157,10 @@ public final class Zmat {
 
     Zmat(int nrow, int ncol, boolean isPosSemiDefinite) {
         this.isPosSemiDefinite = isPosSemiDefinite;
-        this.nrow = nrow;
+        nr = nrow;
         this.ncol = ncol;
         rx = nrow;
         cx = ncol;
-        nr = nrow;
         nc = ncol;
         re = new double[nr][nc];
         im = new double[nr][nc];
@@ -185,8 +175,8 @@ public final class Zmat {
      * Returns a copy of the real part of a Zmat.
      */
     public double[][] getRe() {
-        double[][] A = new double[nrow][ncol];
-        for (int i = 0; i < nrow; i++)
+        double[][] A = new double[nr][ncol];
+        for (int i = 0; i < nr; i++)
             for (int j = 0; j < ncol; j++)
                 A[i][j] = re[i][j];
         return A;
@@ -196,8 +186,8 @@ public final class Zmat {
      * Returns a copy of the imaginary part of a Zmat.
      */
     public double[][] getIm() {
-        double[][] A = new double[nrow][ncol];
-        for (int i = 0; i < nrow; i++)
+        double[][] A = new double[nr][ncol];
+        for (int i = 0; i < nr; i++)
             for (int j = 0; j < ncol; j++)
                 A[i][j] = im[i][j];
         return A;
@@ -207,8 +197,8 @@ public final class Zmat {
      * Returns a copy of the real and imaginary parts as a complex array.
      */
     public Z[][] getZ() {
-        Z[][] A = new Z[nrow][ncol];
-        for (int i = 0; i < nrow; i++)
+        Z[][] A = new Z[nr][ncol];
+        for (int i = 0; i < nr; i++)
             for (int j = 0; j < ncol; j++)
                 A[i][j] = new Z(re[i][j], im[i][j]);
         return A;
@@ -446,10 +436,10 @@ public final class Zmat {
     }
 
     public int rows() {
-        return nrow;
+        return nr;
     }
 
     public int cols() {
-        return ncol;
+        return nc;
     }
 }
