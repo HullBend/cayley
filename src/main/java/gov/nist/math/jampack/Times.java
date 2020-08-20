@@ -15,9 +15,9 @@ public final class Times {
      * @return zA
      */
     public static Zmat o(Z z, Zmat A) {
-        Zmat B = new Zmat(A.nr, A.ncol);
+        Zmat B = new Zmat(A.nr, A.nc);
         for (int i = 0; i < A.nr; i++)
-            for (int j = 0; j < A.ncol; j++) {
+            for (int j = 0; j < A.nc; j++) {
                 B.re[i][j] = z.re * A.re[i][j] - z.im * A.im[i][j];
                 B.im[i][j] = z.im * A.re[i][j] + z.re * A.im[i][j];
             }
@@ -36,12 +36,12 @@ public final class Times {
      *                for unconformity
      */
     public static Zmat o(Zmat A, Zmat B) throws ZException {
-        if (A.ncol != B.nr)
+        if (A.nc != B.nr)
             throw new ZException("Unconformity in product");
-        Zmat C = new Zmat(A.nr, B.ncol);
+        Zmat C = new Zmat(A.nr, B.nc);
         for (int i = 0; i < A.nr; i++)
-            for (int k = 0; k < A.ncol; k++)
-                for (int j = 0; j < B.ncol; j++) {
+            for (int k = 0; k < A.nc; k++)
+                for (int j = 0; j < B.nc; j++) {
                     C.re[i][j] = C.re[i][j] + A.re[i][k] * B.re[k][j] - A.im[i][k] * B.im[k][j];
                     C.im[i][j] = C.im[i][j] + A.im[i][k] * B.re[k][j] + A.re[i][k] * B.im[k][j];
                 }
@@ -56,19 +56,19 @@ public final class Times {
      * @return A<sup>H</sup>A
      */
     public static Zmat aha(Zmat A) {
-        Zmat C = new Zmat(A.ncol, A.ncol, true);
+        Zmat C = new Zmat(A.nc, A.nc, true);
         for (int k = 0; k < A.nr; k++) {
-            for (int i = 0; i < A.ncol; i++) {
+            for (int i = 0; i < A.nc; i++) {
                 C.re[i][i] = C.re[i][i] + A.re[k][i] * A.re[k][i] + A.im[k][i] * A.im[k][i];
                 C.im[i][i] = 0.;
-                for (int j = i + 1; j < A.ncol; j++) {
+                for (int j = i + 1; j < A.nc; j++) {
                     C.re[i][j] = C.re[i][j] + A.re[k][i] * A.re[k][j] + A.im[k][i] * A.im[k][j];
                     C.im[i][j] = C.im[i][j] + A.re[k][i] * A.im[k][j] - A.im[k][i] * A.re[k][j];
                 }
             }
         }
-        for (int i = 0; i < A.ncol; i++) {
-            for (int j = i + 1; j < A.ncol; j++) {
+        for (int i = 0; i < A.nc; i++) {
+            for (int j = i + 1; j < A.nc; j++) {
                 C.re[j][i] = C.re[i][j];
                 C.im[j][i] = -C.im[i][j];
             }
@@ -86,12 +86,12 @@ public final class Times {
     public static Zmat aah(Zmat A) {
         Zmat C = new Zmat(A.nr, A.nr, true);
         for (int i = 0; i < A.nr; i++) {
-            for (int k = 0; k < A.ncol; k++) {
+            for (int k = 0; k < A.nc; k++) {
                 C.re[i][i] = C.re[i][i] + A.re[i][k] * A.re[i][k] + A.im[i][k] * A.im[i][k];
             }
             C.im[i][i] = 0.;
             for (int j = i + 1; j < A.nr; j++) {
-                for (int k = 0; k < A.ncol; k++) {
+                for (int k = 0; k < A.nc; k++) {
                     C.re[i][j] = C.re[i][j] + A.re[i][k] * A.re[j][k] + A.im[i][k] * A.im[j][k];
                     C.im[i][j] = C.im[i][j] - A.re[i][k] * A.im[j][k] + A.im[i][k] * A.re[j][k];
                 }
@@ -158,7 +158,7 @@ public final class Times {
         if (D.order != A.nr) {
             throw new ZException("Unconformity in product.");
         }
-        Zmat B = new Zmat(A.nr, A.ncol);
+        Zmat B = new Zmat(A.nr, A.nc);
         for (int i = 0; i < A.nr; i++) {
             for (int j = 0; j < A.nc; j++) {
                 B.re[i][j] = D.re[i] * A.re[i][j] - D.im[i] * A.im[i][j];
@@ -180,12 +180,12 @@ public final class Times {
      *                for unconformity
      */
     public static Zmat o(Zmat A, Zdiagmat D) throws ZException {
-        if (D.order != A.ncol) {
+        if (D.order != A.nc) {
             throw new ZException("Unconformity in product.");
         }
-        Zmat B = new Zmat(A.nr, A.ncol);
+        Zmat B = new Zmat(A.nr, A.nc);
         for (int i = 0; i < A.nr; i++) {
-            for (int j = 0; j < A.ncol; j++) {
+            for (int j = 0; j < A.nc; j++) {
                 B.re[i][j] = D.re[j] * A.re[i][j] - D.im[j] * A.im[i][j];
                 B.im[i][j] = D.re[j] * A.im[i][j] + D.im[j] * A.re[i][j];
             }

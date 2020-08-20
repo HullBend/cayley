@@ -10,9 +10,6 @@ public final class Zmat {
 
     boolean isPosSemiDefinite = false;
 
-    /** The number of columns */
-    final int ncol;
-
     /** The real part of the matrix */
     final double re[][];
 
@@ -44,12 +41,11 @@ public final class Zmat {
      */
     public Zmat(double re[][], double im[][]) throws ZException {
     	nr = re.length;
-        ncol = re[0].length;
-        if (nr != im.length || ncol != im[0].length)
+        nc = re[0].length;
+        if (nr != im.length || nc != im[0].length)
             throw new ZException("Inconsistent array dimensions");
         rx = nr;
-        cx = ncol;
-        nc = ncol;
+        cx = nc;
         this.re = new double[nr][nc];
         this.im = new double[nr][nc];
         for (int i = 0; i < nr; i++)
@@ -64,10 +60,9 @@ public final class Zmat {
      */
     public Zmat(Z A[][]) {
         nr = A.length;
-        ncol = A[0].length;
+        nc = A[0].length;
         rx = nr;
-        cx = ncol;
-        nc = ncol;
+        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++)
@@ -83,10 +78,9 @@ public final class Zmat {
      */
     public Zmat(double A[][]) {
         nr = A.length;
-        ncol = A[0].length;
+        nc = A[0].length;
         rx = nr;
-        cx = ncol;
-        nc = ncol;
+        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++)
@@ -101,10 +95,9 @@ public final class Zmat {
      */
     public Zmat(Zmat A) {
         nr = A.nr;
-        ncol = A.ncol;
+        nc = A.nc;
         rx = nr;
-        cx = ncol;
-        nc = ncol;
+        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++)
@@ -119,10 +112,9 @@ public final class Zmat {
      */
     public Zmat(Z1 A) {
         nr = A.n;
-        ncol = 1;
+        nc = 1;
         rx = nr;
-        cx = ncol;
-        nc = ncol;
+        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++) {
@@ -136,10 +128,9 @@ public final class Zmat {
      */
     public Zmat(Zdiagmat D) {
         nr = D.order;
-        ncol = D.order;
+        nc = D.order;
         rx = nr;
-        cx = ncol;
-        nc = ncol;
+        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++) {
@@ -158,10 +149,9 @@ public final class Zmat {
     Zmat(int nrow, int ncol, boolean isPosSemiDefinite) {
         this.isPosSemiDefinite = isPosSemiDefinite;
         nr = nrow;
-        this.ncol = ncol;
-        rx = nrow;
-        cx = ncol;
         nc = ncol;
+        rx = nr;
+        cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++)
@@ -175,9 +165,9 @@ public final class Zmat {
      * Returns a copy of the real part of a Zmat.
      */
     public double[][] getRe() {
-        double[][] A = new double[nr][ncol];
+        double[][] A = new double[nr][nc];
         for (int i = 0; i < nr; i++)
-            for (int j = 0; j < ncol; j++)
+            for (int j = 0; j < nc; j++)
                 A[i][j] = re[i][j];
         return A;
     }
@@ -186,9 +176,9 @@ public final class Zmat {
      * Returns a copy of the imaginary part of a Zmat.
      */
     public double[][] getIm() {
-        double[][] A = new double[nr][ncol];
+        double[][] A = new double[nr][nc];
         for (int i = 0; i < nr; i++)
-            for (int j = 0; j < ncol; j++)
+            for (int j = 0; j < nc; j++)
                 A[i][j] = im[i][j];
         return A;
     }
@@ -197,9 +187,9 @@ public final class Zmat {
      * Returns a copy of the real and imaginary parts as a complex array.
      */
     public Z[][] getZ() {
-        Z[][] A = new Z[nr][ncol];
+        Z[][] A = new Z[nr][nc];
         for (int i = 0; i < nr; i++)
-            for (int j = 0; j < ncol; j++)
+            for (int j = 0; j < nc; j++)
                 A[i][j] = new Z(re[i][j], im[i][j]);
         return A;
     }
