@@ -433,6 +433,14 @@ public final class Zmat {
         return im[i][j];
     }
 
+    public void scaleRe(int i, int j, double scale) {
+        re[i][j] *= scale;
+    }
+
+    public void scaleIm(int i, int j, double scale) {
+        im[i][j] *= scale;
+    }
+
     public void setRe(int i, int j, double val) {
         re[i][j] = val;
     }

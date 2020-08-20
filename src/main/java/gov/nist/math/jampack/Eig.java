@@ -61,18 +61,21 @@ public final class Eig {
 
             d = T.get0(k, k);
 
-            X.re[k][k] = 1.0;
-            X.im[k][k] = 0.0;
+            X.setRe(k, k, 1.0);
+            X.setIm(k, k, 0.0);
 
             for (i = k - 1; i >= 0; i--) {
 
-                X.re[i][k] = -T.re[i][k];
-                X.im[i][k] = -T.im[i][k];
+                X.scaleRe(i, k, -1.0);
+                X.scaleIm(i, k, -1.0);
 
                 for (j = i + 1; j < k; j++) {
-
-                    X.re[i][k] = X.re[i][k] - T.re[i][j] * X.re[j][k] + T.im[i][j] * X.im[j][k];
-                    X.im[i][k] = X.im[i][k] - T.re[i][j] * X.im[j][k] - T.im[i][j] * X.re[j][k];
+                    double rejk = X.re(j, k);
+                    double imjk = X.im(j, k);
+                    double reij = T.re(i, j);
+                    double imij = T.im(i, j);
+                    X.setRe(i, k, X.re(i, k) - reij * rejk + imij * imjk);
+                    X.setIm(i, k, X.im(i, k) - reij * imjk - imij * rejk);
                 }
 
                 z = T.get0(i, i);
@@ -87,8 +90,8 @@ public final class Eig {
             /* Scale the vector so its norm is one. */
             scale = 1.0 / Norm.fro(X, 1, X.nr, 1 + k, 1 + k);
             for (i = 0; i < X.nr; i++) {
-                X.re[i][k] = scale * X.re[i][k];
-                X.im[i][k] = scale * X.im[i][k];
+                X.scaleRe(i, k, scale);
+                X.scaleIm(i, k, scale);
             }
         }
         X = Times.o(S.U, X);
