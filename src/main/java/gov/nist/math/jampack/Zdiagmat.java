@@ -17,12 +17,6 @@ public final class Zdiagmat {
     /** The imaginary part of the diagonal */
     final double im[];
 
-    /** The order of the matrix (public) */
-    public final int n;
-
-    /** The index of the last diagonal (public) */
-    final int dx;
-
     /**
      * Constructs a Zdiagmat and initializes it to zero.
      * 
@@ -31,10 +25,8 @@ public final class Zdiagmat {
      */
     public Zdiagmat(int order) {
         this.order = order;
-        dx = order;
-        n = order;
-        re = new double[n];
-        im = new double[n];
+        re = new double[order];
+        im = new double[order];
     }
 
     /**
@@ -47,11 +39,9 @@ public final class Zdiagmat {
      */
     public Zdiagmat(int order, Z val) {
         this.order = order;
-        dx = order;
-        n = order;
-        re = new double[n];
-        im = new double[n];
-        for (int i = 0; i < n; i++) {
+        re = new double[order];
+        im = new double[order];
+        for (int i = 0; i < order; i++) {
             re[i] = val.re;
             im[i] = val.im;
         }
@@ -64,11 +54,9 @@ public final class Zdiagmat {
      */
     public Zdiagmat(Z1 val) {
         order = val.re.length;
-        dx = order;
-        n = order;
-        re = new double[n];
-        im = new double[n];
-        for (int i = 0; i < n; i++) {
+        re = new double[order];
+        im = new double[order];
+        for (int i = 0; i < order; i++) {
             re[i] = val.re[i];
             im[i] = val.im[i];
         }
@@ -110,8 +98,6 @@ public final class Zdiagmat {
                 im[i] = A.im[i + k][i];
             }
         }
-        dx = order;
-        n = order;
     }
 
     /**
@@ -133,12 +119,10 @@ public final class Zdiagmat {
      */
     public Zdiagmat(Zdiagmat D) {
         order = D.order;
-        dx = order;
-        n = order;
-        re = new double[n];
-        im = new double[n];
+        re = new double[order];
+        im = new double[order];
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < order; i++) {
             re[i] = D.re[i];
             im[i] = D.im[i];
         }

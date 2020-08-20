@@ -143,8 +143,8 @@ public final class Zmat {
      * Creates a Zmat and initialize it to a Zdiagmat.
      */
     public Zmat(Zdiagmat D) {
-        nrow = D.n;
-        ncol = D.n;
+        nrow = D.order;
+        ncol = D.order;
         rx = nrow;
         cx = ncol;
         nr = nrow;
