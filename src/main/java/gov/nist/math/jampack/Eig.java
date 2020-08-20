@@ -1,7 +1,7 @@
 package gov.nist.math.jampack;
 
 /**
- * Eig implements the eigenvalue-vector decomposition of of a square matrix.
+ * Eig implements the eigenvalue-vector decomposition of a square matrix.
  * Specifically given a diagonalizable matrix A, there is a non-singular matrix
  * X such that
  * 
@@ -32,8 +32,7 @@ public final class Eig {
      * @param A
      *            The matrix whose decomposition is to be computed
      * @exception ZException
-     *                Thrown if A is not square. <br>
-     *                Passed from below.
+     *                Thrown if A is not square.
      */
     public Eig(Zmat A) throws ZException {
         int i, j, k;

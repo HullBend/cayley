@@ -34,7 +34,7 @@ public final class Rot {
     public double zi;
 
     /**
-     * Given a real 2-vectc, genc generates a real plane rotation P such that
+     * Given a real 2-vector, genc generates a real plane rotation P such that
      * 
      * <pre>
      *      P|x| =  | c  s||x| = |z|

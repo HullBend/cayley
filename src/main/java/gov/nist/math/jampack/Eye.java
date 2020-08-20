@@ -16,7 +16,7 @@ public final class Eye {
     }
 
     /**
-     * Generates an <tt>mxn</tt> matrix whose diagonal elements are one and
+     * Generates an <tt>m x n</tt> matrix whose diagonal elements are one and
      * whose off diagonal elements are zero.
      * 
      * @param m the number of rows in the matrix

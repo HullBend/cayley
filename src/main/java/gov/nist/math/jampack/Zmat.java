@@ -444,4 +444,12 @@ public final class Zmat {
                 im[ii[i] - 1][jj[j] - 1] = A.im[i][j];
             }
     }
+
+    public int rows() {
+        return nrow;
+    }
+
+    public int cols() {
+        return ncol;
+    }
 }

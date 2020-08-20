@@ -24,8 +24,7 @@ public final class House {
      * @param c
      *            The index of the generating column
      * @return A Z1 of length r2-r1+1 containing the Householder vector
-     * @exception ZException
-     *                Passed from below.
+     * @exception ZException if anything goes wrong
      */
     public static Z1 genc(Zmat A, int r1, int r2, int c) throws ZException {
         int i, ru;
@@ -98,8 +97,7 @@ public final class House {
      * @param c2
      *            The index of the column in which the generating row ends
      * @return A Z1 of length r2-r1+1 containing the Householder vector
-     * @exception ZException
-     *                Passed from below.
+     * @exception ZException if anything goes wrong
      */
     public static Z1 genr(Zmat A, int r, int c1, int c2) throws ZException {
         int j, cu;

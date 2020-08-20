@@ -30,7 +30,7 @@ public final class H {
      * Returns the conjugate transpose of a Zdiagmat.
      * 
      * @param D
-     *            The matrix to be conjugated (and transposed)
+     *            The matrix to be conjugated and transposed
      * @return The conjugate transpose of D
      */
     public static Zdiagmat o(Zdiagmat D) {

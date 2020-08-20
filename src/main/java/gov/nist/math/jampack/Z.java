@@ -31,13 +31,13 @@ package gov.nist.math.jampack;
 public final class Z {
 
     /** Complex 1. */
-    public static final Z ONE = new Z(1, 0);
+    public static final Z ONE = new Z(1.0, 0.0);
 
     /** Complex 0. */
-    public static final Z ZERO = new Z(0, 0);
+    public static final Z ZERO = new Z(0.0, 0.0);
 
     /** Imaginary unit. */
-    public static final Z I = new Z(0, 1);
+    public static final Z I = new Z(0.0, 1.0);
 
     /** The real part of Z. */
     public double re;
