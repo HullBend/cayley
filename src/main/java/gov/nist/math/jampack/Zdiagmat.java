@@ -151,6 +151,14 @@ public final class Zdiagmat {
         im[ii - 1] = val.im;
     }
 
+    public double re(int i) {
+        return re[i];
+    }
+
+    public double im(int i) {
+        return im[i];
+    }
+
     public int order() {
         return order;
     }

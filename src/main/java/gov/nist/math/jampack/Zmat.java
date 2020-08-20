@@ -425,6 +425,22 @@ public final class Zmat {
         }
     }
 
+    public double re(int i, int j) {
+        return re[i][j];
+    }
+
+    public double im(int i, int j) {
+        return im[i][j];
+    }
+
+    public void setRe(int i, int j, double val) {
+        re[i][j] = val;
+    }
+
+    public void setIm(int i, int j, double val) {
+        im[i][j] = val;
+    }
+
     public int rows() {
         return nr;
     }
