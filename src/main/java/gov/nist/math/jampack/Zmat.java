@@ -40,19 +40,21 @@ public final class Zmat {
      *                if the dimensions of re and im do not match
      */
     public Zmat(double re[][], double im[][]) throws ZException {
-    	nr = re.length;
+        nr = re.length;
         nc = re[0].length;
-        if (nr != im.length || nc != im[0].length)
+        if (nr != im.length || nc != im[0].length) {
             throw new ZException("Inconsistent array dimensions");
+        }
         rx = nr;
         cx = nc;
         this.re = new double[nr][nc];
         this.im = new double[nr][nc];
-        for (int i = 0; i < nr; i++)
+        for (int i = 0; i < nr; i++) {
             for (int j = 0; j < nc; j++) {
                 this.re[i][j] = re[i][j];
                 this.im[i][j] = im[i][j];
             }
+        }
     }
 
     /**
@@ -65,11 +67,12 @@ public final class Zmat {
         cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
-        for (int i = 0; i < nr; i++)
+        for (int i = 0; i < nr; i++) {
             for (int j = 0; j < nc; j++) {
                 re[i][j] = A[i][j].re;
                 im[i][j] = A[i][j].im;
             }
+        }
     }
 
     /**
@@ -83,11 +86,12 @@ public final class Zmat {
         cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
-        for (int i = 0; i < nr; i++)
+        for (int i = 0; i < nr; i++) {
             for (int j = 0; j < nc; j++) {
                 re[i][j] = A[i][j];
                 im[i][j] = 0.0;
             }
+        }
     }
 
     /**
@@ -100,11 +104,12 @@ public final class Zmat {
         cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
-        for (int i = 0; i < nr; i++)
+        for (int i = 0; i < nr; i++) {
             for (int j = 0; j < nc; j++) {
                 re[i][j] = A.re[i][j];
                 im[i][j] = A.im[i][j];
             }
+        }
     }
 
     /**
@@ -154,11 +159,12 @@ public final class Zmat {
         cx = nc;
         re = new double[nr][nc];
         im = new double[nr][nc];
-        for (int i = 0; i < nr; i++)
+        for (int i = 0; i < nr; i++) {
             for (int j = 0; j < nc; j++) {
                 re[i][j] = 0.0;
                 im[i][j] = 0.0;
             }
+        }
     }
 
     /**
@@ -166,9 +172,11 @@ public final class Zmat {
      */
     public double[][] getRe() {
         double[][] A = new double[nr][nc];
-        for (int i = 0; i < nr; i++)
-            for (int j = 0; j < nc; j++)
+        for (int i = 0; i < nr; i++) {
+            for (int j = 0; j < nc; j++) {
                 A[i][j] = re[i][j];
+            }
+        }
         return A;
     }
 
@@ -177,9 +185,11 @@ public final class Zmat {
      */
     public double[][] getIm() {
         double[][] A = new double[nr][nc];
-        for (int i = 0; i < nr; i++)
-            for (int j = 0; j < nc; j++)
+        for (int i = 0; i < nr; i++) {
+            for (int j = 0; j < nc; j++) {
                 A[i][j] = im[i][j];
+            }
+        }
         return A;
     }
 
@@ -188,9 +198,11 @@ public final class Zmat {
      */
     public Z[][] getZ() {
         Z[][] A = new Z[nr][nc];
-        for (int i = 0; i < nr; i++)
-            for (int j = 0; j < nc; j++)
+        for (int i = 0; i < nr; i++) {
+            for (int j = 0; j < nc; j++) {
                 A[i][j] = new Z(re[i][j], im[i][j]);
+            }
+        }
         return A;
     }
 
@@ -264,11 +276,12 @@ public final class Zmat {
         int nrow = ii2 - ii1 + 1;
         int ncol = jj2 - jj1 + 1;
         Zmat A = new Zmat(nrow, ncol);
-        for (int i = 0; i < nrow; i++)
+        for (int i = 0; i < nrow; i++) {
             for (int j = 0; j < ncol; j++) {
                 A.re[i][j] = re[i + ii1 - 1][j + jj1 - 1];
                 A.im[i][j] = im[i + ii1 - 1][j + jj1 - 1];
             }
+        }
         return A;
     }
 
@@ -289,11 +302,12 @@ public final class Zmat {
     public void put(int ii1, int ii2, int jj1, int jj2, Zmat A) {
         int nrow = ii2 - ii1 + 1;
         int ncol = jj2 - jj1 + 1;
-        for (int i = 0; i < nrow; i++)
+        for (int i = 0; i < nrow; i++) {
             for (int j = 0; j < ncol; j++) {
                 re[i + ii1 - 1][j + jj1 - 1] = A.re[i][j];
                 im[i + ii1 - 1][j + jj1 - 1] = A.im[i][j];
             }
+        }
     }
 
     /**
@@ -310,11 +324,12 @@ public final class Zmat {
         int nrow = ii.length;
         int ncol = jj2 - jj1 + 1;
         Zmat A = new Zmat(nrow, ncol);
-        for (int i = 0; i < nrow; i++)
+        for (int i = 0; i < nrow; i++) {
             for (int j = 0; j < ncol; j++) {
                 A.re[i][j] = re[ii[i] - 1][j + jj1 - 1];
                 A.im[i][j] = im[ii[i] - 1][j + jj1 - 1];
             }
+        }
         return A;
     }
 
@@ -333,11 +348,12 @@ public final class Zmat {
     public void put(int ii[], int jj1, int jj2, Zmat A) {
         int nrow = ii.length;
         int ncol = jj2 - jj1 + 1;
-        for (int i = 0; i < nrow; i++)
+        for (int i = 0; i < nrow; i++) {
             for (int j = 0; j < ncol; j++) {
                 re[ii[i] - 1][j + jj1 - 1] = A.re[i][j];
                 im[ii[i] - 1][j + jj1 - 1] = A.im[i][j];
             }
+        }
     }
 
     /**
@@ -354,11 +370,12 @@ public final class Zmat {
         int nrow = ii2 - ii1 + 1;
         int ncol = jj.length;
         Zmat A = new Zmat(nrow, ncol);
-        for (int i = 0; i < nrow; i++)
+        for (int i = 0; i < nrow; i++) {
             for (int j = 0; j < ncol; j++) {
                 A.re[i][j] = re[i + ii1 - 1][jj[j] - 1];
                 A.im[i][j] = im[i + ii1 - 1][jj[j] - 1];
             }
+        }
         return A;
     }
 
@@ -377,11 +394,12 @@ public final class Zmat {
     public void put(int ii1, int ii2, int jj[], Zmat A) {
         int nrow = ii2 - ii1 + 1;
         int ncol = jj.length;
-        for (int i = 0; i < nrow; i++)
+        for (int i = 0; i < nrow; i++) {
             for (int j = 0; j < ncol; j++) {
                 re[i + ii1 - 1][jj[j] - 1] = A.re[i][j];
                 im[i + ii1 - 1][jj[j] - 1] = A.im[i][j];
             }
+        }
     }
 
     /**
@@ -396,11 +414,12 @@ public final class Zmat {
         int nrow = ii.length;
         int ncol = jj.length;
         Zmat A = new Zmat(nrow, ncol);
-        for (int i = 0; i < nrow; i++)
+        for (int i = 0; i < nrow; i++) {
             for (int j = 0; j < ncol; j++) {
                 A.re[i][j] = re[ii[i] - 1][jj[j] - 1];
                 A.im[i][j] = im[ii[i] - 1][jj[j] - 1];
             }
+        }
         return A;
     }
 
@@ -418,11 +437,12 @@ public final class Zmat {
     public void put(int ii[], int jj[], Zmat A) {
         int nrow = ii.length;
         int ncol = jj.length;
-        for (int i = 0; i < nrow; i++)
+        for (int i = 0; i < nrow; i++) {
             for (int j = 0; j < ncol; j++) {
                 re[ii[i] - 1][jj[j] - 1] = A.re[i][j];
                 im[ii[i] - 1][jj[j] - 1] = A.im[i][j];
             }
+        }
     }
 
     public int rows() {
