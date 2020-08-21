@@ -245,8 +245,8 @@ public final class Zsvd {
             if (d[k] < 0) {
                 d[k] = -d[k];
                 for (i = 0; i < X.nc; i++) {
-                    V.re[i][k] = -V.re[i][k];
-                    V.im[i][k] = -V.im[i][k];
+                    V.scaleRe(i, k, -1.0);
+                    V.scaleIm(i, k, -1.0);
                 }
             }
             for (j = k; j < m; j++) {
@@ -255,20 +255,20 @@ public final class Zsvd {
                     d[j] = d[j + 1];
                     d[j + 1] = t;
                     for (i = 0; i < X.nr; i++) {
-                        t = U.re[i][j];
-                        U.re[i][j] = U.re[i][j + 1];
-                        U.re[i][j + 1] = t;
-                        t = U.im[i][j];
-                        U.im[i][j] = U.im[i][j + 1];
-                        U.im[i][j + 1] = t;
+                        t = U.re(i, j);
+                        U.setRe(i, j, U.re(i, j + 1));
+                        U.setRe(i, j + 1, t);
+                        t = U.im(i, j);
+                        U.setIm(i, j, U.im(i, j + 1));
+                        U.setIm(i, j + 1, t);
                     }
                     for (i = 0; i < X.nc; i++) {
-                        t = V.re[i][j];
-                        V.re[i][j] = V.re[i][j + 1];
-                        V.re[i][j + 1] = t;
-                        t = V.im[i][j];
-                        V.im[i][j] = V.im[i][j + 1];
-                        V.im[i][j + 1] = t;
+                        t = V.re(i, j);
+                        V.setRe(i, j, V.re(i, j + 1));
+                        V.setRe(i, j + 1, t);
+                        t = V.im(i, j);
+                        V.setIm(i, j, V.im(i, j + 1));
+                        V.setIm(i, j + 1, t);
                     }
                 }
             }
