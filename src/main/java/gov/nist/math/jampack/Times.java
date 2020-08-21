@@ -21,8 +21,10 @@ public final class Times {
         Zmat B = new Zmat(A.nr, A.nc);
         for (int i = 0; i < A.nr; i++)
             for (int j = 0; j < A.nc; j++) {
-                B.re[i][j] = z.re * A.re[i][j] - z.im * A.im[i][j];
-                B.im[i][j] = z.im * A.re[i][j] + z.re * A.im[i][j];
+                double reij = A.re(i, j);
+                double imij = A.im(i, j);
+                B.setRe(i, j, z.re * reij - z.im * imij);
+                B.setIm(i, j, z.im * reij + z.re * imij);
             }
         return B;
     }
@@ -171,8 +173,12 @@ public final class Times {
         Zmat B = new Zmat(A.nr, A.nc);
         for (int i = 0; i < A.nr; i++) {
             for (int j = 0; j < A.nc; j++) {
-                B.re[i][j] = D.re[i] * A.re[i][j] - D.im[i] * A.im[i][j];
-                B.im[i][j] = D.re[i] * A.im[i][j] + D.im[i] * A.re[i][j];
+                double rei = D.re(i);
+                double imi = D.im(i);
+                double reij = A.re(i, j);
+                double imij = A.im(i, j);
+                B.setRe(i, j, rei * reij - imi * imij);
+                B.setIm(i, j, rei * imij + imi * reij);
             }
         }
         return B;
@@ -196,8 +202,12 @@ public final class Times {
         Zmat B = new Zmat(A.nr, A.nc);
         for (int i = 0; i < A.nr; i++) {
             for (int j = 0; j < A.nc; j++) {
-                B.re[i][j] = D.re[j] * A.re[i][j] - D.im[j] * A.im[i][j];
-                B.im[i][j] = D.re[j] * A.im[i][j] + D.im[j] * A.re[i][j];
+                double rej = D.re(j);
+                double imj = D.im(j);
+                double reij = A.re(i, j);
+                double imij = A.im(i, j);
+                B.setRe(i, j, rej * reij - imj * imij);
+                B.setIm(i, j, rej * imij + imj * reij);
             }
         }
         return B;

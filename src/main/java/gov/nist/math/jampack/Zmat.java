@@ -195,7 +195,7 @@ public final class Zmat {
      *            The column index of the element
      */
     public Z get(int ii, int jj) {
-        return new Z(re[ii - 1][jj - 1], im[ii - 1][jj - 1]);
+        return new Z(re(ii - 1, jj - 1), im(ii - 1, jj - 1));
     }
 
     /**
@@ -207,7 +207,7 @@ public final class Zmat {
      *            The column index of the element
      */
     Z get0(int i, int j) {
-        return new Z(re[i][j], im[i][j]);
+        return new Z(re(i, j), im(i, j));
     }
 
     /**
