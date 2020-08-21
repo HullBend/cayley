@@ -39,7 +39,7 @@ public final class Norm {
         scale = 0.0;
         for (i = i1; i <= i2; i++) {
             for (j = j1; j <= j2; j++) {
-                scale = Math.max(scale, Math.abs(A.re[i][j]) + Math.abs(A.im[i][j]));
+                scale = Math.max(scale, Math.abs(A.re(i, j)) + Math.abs(A.im(i, j)));
             }
         }
         if (scale == 0.0) {
@@ -52,9 +52,9 @@ public final class Norm {
         nrm = 0.0;
         for (i = i1; i <= i2; i++) {
             for (j = j1; j <= j2; j++) {
-                fac = scale * A.re[i][j];
+                fac = scale * A.re(i, j);
                 nrm = nrm + fac * fac;
-                fac = scale * A.im[i][j];
+                fac = scale * A.im(i, j);
                 nrm = nrm + fac * fac;
             }
         }
@@ -123,7 +123,7 @@ public final class Norm {
 
         scale = 0.0;
         for (i = 0; i < n; i++) {
-            scale = Math.max(scale, Math.abs(D.re[i]) + Math.abs(D.im[i]));
+            scale = Math.max(scale, Math.abs(D.re(i)) + Math.abs(D.im(i)));
         }
         if (scale == 0.0) {
             return 0.0;
@@ -135,9 +135,9 @@ public final class Norm {
         nrm = 0.0;
 
         for (i = 0; i < n; i++) {
-            fac = scale * D.re[i];
+            fac = scale * D.re(i);
             nrm = nrm + fac * fac;
-            fac = scale * D.im[i];
+            fac = scale * D.im(i);
             nrm = nrm + fac * fac;
         }
 

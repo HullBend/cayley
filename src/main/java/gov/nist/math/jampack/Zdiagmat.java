@@ -82,8 +82,8 @@ public final class Zdiagmat {
             re = new double[order];
             im = new double[order];
             for (int i = 0; i < order; i++) {
-                re[i] = A.re[i][i + k];
-                im[i] = A.im[i][i + k];
+                re[i] = A.re(i, i + k);
+                im[i] = A.im(i, i + k);
             }
         } else {
             k = -k;
@@ -94,8 +94,8 @@ public final class Zdiagmat {
             re = new double[order];
             im = new double[order];
             for (int i = 0; i < order; i++) {
-                re[i] = A.re[i + k][i];
-                im[i] = A.im[i + k][i];
+                re[i] = A.re(i + k, i);
+                im[i] = A.im(i + k, i);
             }
         }
     }

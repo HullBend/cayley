@@ -27,8 +27,8 @@ public final class Eye {
         Zmat I = new Zmat(m, n);
 
         for (int i = 0; i < Math.min(m, n); i++) {
-            I.re[i][i] = 1;
-            I.im[i][i] = 0;
+            I.setRe(i, i, 1.0);
+            I.setIm(i, i, 0.0);
         }
 
         return I;

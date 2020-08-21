@@ -20,8 +20,8 @@ public final class H {
         Zmat Ah = new Zmat(A.nc, A.nr);
         for (int i = 0; i < A.nr; i++)
             for (int j = 0; j < A.nc; j++) {
-                Ah.re[j][i] = A.re[i][j];
-                Ah.im[j][i] = -A.im[i][j];
+                Ah.setRe(j, i, A.re(i, j));
+                Ah.setIm(j, i, -A.im(i, j));
             }
         return Ah;
     }
@@ -52,8 +52,8 @@ public final class H {
         Zmat Ah = new Zmat(A.nc, A.nr);
         for (int i = 0; i < A.nr; i++)
             for (int j = 0; j < A.nc; j++) {
-                Ah.re[j][i] = A.re[i][j];
-                Ah.im[j][i] = A.im[i][j];
+                Ah.setRe(j, i, A.re(i, j));
+                Ah.setIm(j, i, A.im(i, j));
             }
         return Ah;
     }
