@@ -39,15 +39,22 @@ public final class Times {
      *                for unconformity
      */
     public static Zmat o(Zmat A, Zmat B) throws ZException {
-        if (A.nc != B.nr)
+        if (A.nc != B.nr) {
             throw new ZException("Unconformity in product");
+        }
         Zmat C = new Zmat(A.nr, B.nc);
-        for (int i = 0; i < A.nr; i++)
-            for (int k = 0; k < A.nc; k++)
+        for (int i = 0; i < A.nr; i++) {
+            for (int k = 0; k < A.nc; k++) {
                 for (int j = 0; j < B.nc; j++) {
-                    C.re[i][j] = C.re[i][j] + A.re[i][k] * B.re[k][j] - A.im[i][k] * B.im[k][j];
-                    C.im[i][j] = C.im[i][j] + A.im[i][k] * B.re[k][j] + A.re[i][k] * B.im[k][j];
+                    double imkj = B.im(k, j);
+                    double rekj = B.re(k, j);
+                    double imik = A.im(i, k);
+                    double reik = A.re(i, k);
+                    C.setRe(i, j, C.re(i, j) + reik * rekj - imik * imkj);
+                    C.setIm(i, j, C.im(i, j) + imik * rekj + reik * imkj);
                 }
+            }
+        }
         return C;
     }
 
