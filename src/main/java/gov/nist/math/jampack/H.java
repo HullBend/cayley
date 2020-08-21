@@ -36,7 +36,7 @@ public final class H {
     public static Zdiagmat o(Zdiagmat D) {
         Zdiagmat Dh = new Zdiagmat(D);
         for (int i = 0; i < Dh.order; i++) {
-            Dh.im[i] = -Dh.im(i);
+            Dh.setIm(i, -Dh.im(i));
         }
         return Dh;
     }

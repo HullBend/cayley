@@ -276,6 +276,6 @@ public final class Zsvd {
         /*
          * Return the decomposition;
          */
-        S.re = d;
+        S.setRe(d);
     }
 }

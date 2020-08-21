@@ -12,10 +12,10 @@ public final class Zdiagmat {
     final int order;
 
     /** The real part of the diagonal */
-    double re[];
+    private double re[];
 
     /** The imaginary part of the diagonal */
-    final double im[];
+    private final double im[];
 
     /**
      * Constructs a Zdiagmat and initializes it to zero.
@@ -157,6 +157,18 @@ public final class Zdiagmat {
 
     public double im(int i) {
         return im[i];
+    }
+
+    public void setRe(int i, double val) {
+        re[i] = val;
+    }
+
+    public void setIm(int i, double val) {
+        im[i] = val;
+    }
+
+    public void setRe(double[] values) {
+        re = values;
     }
 
     public int order() {

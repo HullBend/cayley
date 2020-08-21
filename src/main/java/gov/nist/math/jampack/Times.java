@@ -128,8 +128,8 @@ public final class Times {
         for (int i = 0; i < D.order; i++) {
             double rei = D.re(i);
             double imi = D.im(i);
-            B.re[i] = z.re * rei - z.im * imi;
-            B.im[i] = z.im * rei + z.re * imi;
+            B.setRe(i, z.re * rei - z.im * imi);
+            B.setIm(i, z.im * rei + z.re * imi);
         }
         return B;
     }
@@ -155,8 +155,8 @@ public final class Times {
             double d1imi = D1.im(i);
             double d2rei = D2.re(i);
             double d2imi = D2.im(i);
-            D3.re[i] = d1rei * d2rei - d1imi * d2imi;
-            D3.im[i] = d1rei * d2imi + d1imi * d2rei;
+            D3.setRe(i, d1rei * d2rei - d1imi * d2imi);
+            D3.setIm(i, d1rei * d2imi + d1imi * d2rei);
         }
         return D3;
     }
