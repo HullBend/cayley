@@ -25,7 +25,7 @@ package gov.nist.math.jampack;
  * The functions are reasonably resistant to overflow and underflow. But the
  * more complicated ones could almost certainly be improved.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class Z {

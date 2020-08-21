@@ -3,6 +3,9 @@ package gov.nist.math.jampack;
 /**
  * Eye generates a matrix whose diagonal elements are one and whose off diagonal
  * elements are zero.
+ * 
+ * @version Pre-alpha, 1999-02-24
+ * @author G. W. Stewart
  */
 public final class Eye {
 

@@ -3,7 +3,7 @@ package gov.nist.math.jampack;
 /**
  * Zdiagmat is a storage efficient representation of a complex diagonal matrix.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class Zdiagmat {

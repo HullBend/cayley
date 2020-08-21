@@ -2,6 +2,9 @@ package gov.nist.math.jampack;
 
 /**
  * Times provides static methods to compute matrix products.
+ * 
+ * @version Pre-alpha, 1999-02-24
+ * @author G. W. Stewart
  */
 public final class Times {
 

@@ -17,7 +17,7 @@ package gov.nist.math.jampack;
  * is that si and zi are zero for the former. The final routines will do the
  * efficient thing.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class Rot {

@@ -6,7 +6,7 @@ package gov.nist.math.jampack;
  * Comments: At this point only the Frobenius norm is calculated. Later the 1,
  * 2, and infinity norms will be added.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class Norm {

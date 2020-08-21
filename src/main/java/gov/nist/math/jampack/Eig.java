@@ -15,7 +15,7 @@ package gov.nist.math.jampack;
  * Warning: if A is defective rounding error will allow Eig to compute a set of
  * eigenvectors. However, the matrix X will be ill conditioned.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class Eig {

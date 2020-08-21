@@ -6,7 +6,7 @@ package gov.nist.math.jampack;
  * one-dimensional complex arrays whose real and imaginary parts are contiguous
  * in storage.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class Z1 {

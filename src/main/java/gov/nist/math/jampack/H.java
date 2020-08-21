@@ -4,7 +4,7 @@ package gov.nist.math.jampack;
  * H computes the conjugate transpose of a matrix and the transpose of a complex
  * matrix.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class H {

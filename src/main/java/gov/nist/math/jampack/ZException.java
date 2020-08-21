@@ -5,7 +5,7 @@ package gov.nist.math.jampack;
  * algorithms are unrecoverable, the standard response is to pass an error
  * message up the line.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 @SuppressWarnings("serial")

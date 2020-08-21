@@ -10,7 +10,7 @@ package gov.nist.math.jampack;
  * 
  * is upper triangular. Schur represents T and U as Zmats.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class Schur {

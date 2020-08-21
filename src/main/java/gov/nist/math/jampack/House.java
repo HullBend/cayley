@@ -4,7 +4,7 @@ package gov.nist.math.jampack;
  * House provides static methods to generate and apply Householder
  * transformations.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class House {

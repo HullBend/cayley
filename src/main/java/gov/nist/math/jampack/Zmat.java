@@ -3,7 +3,7 @@ package gov.nist.math.jampack;
 /**
  * Zmat implements general complex matrix stored in a rectangular array class Z.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class Zmat {

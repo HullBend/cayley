@@ -26,7 +26,7 @@ package gov.nist.math.jampack;
  * A. The columns of U are the left singular vectors of A and the columns of V
  * are the right singular vectors.
  * 
- * @version Pre-alpha
+ * @version Pre-alpha, 1999-02-24
  * @author G. W. Stewart
  */
 public final class Zsvd {
