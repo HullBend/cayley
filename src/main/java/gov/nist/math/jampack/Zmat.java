@@ -11,10 +11,10 @@ public final class Zmat {
     boolean isPosSemiDefinite = false;
 
     /** The real part of the matrix */
-    final double re[][];
+    private final double re[][];
 
     /** The imaginary part of the matrix */
-    final double im[][];
+    private final double im[][];
 
     /** The number of rows */
     public final int nr;
@@ -431,6 +431,14 @@ public final class Zmat {
 
     public double im(int i, int j) {
         return im[i][j];
+    }
+
+    public void addRe(int i, int j, double delta) {
+        re[i][j] += delta;
+    }
+
+    public void addIm(int i, int j, double delta) {
+        im[i][j] += delta;
     }
 
     public void scaleRe(int i, int j, double scale) {

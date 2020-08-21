@@ -218,8 +218,8 @@ public final class House {
 
         for (i = r1; i <= r2; i++) {
             for (j = c1; j <= c2; j++) {
-                A.setRe(i, j, A.re(i, j) - u.re[i - r1] * v.re[j - c1] + u.im[i - r1] * v.im[j - c1]);
-                A.setIm(i, j, A.im(i, j) - u.re[i - r1] * v.im[j - c1] - u.im[i - r1] * v.re[j - c1]);
+                A.addRe(i, j, -u.re[i - r1] * v.re[j - c1] + u.im[i - r1] * v.im[j - c1]);
+                A.addIm(i, j, -u.re[i - r1] * v.im[j - c1] - u.im[i - r1] * v.re[j - c1]);
             }
         }
         return A;
@@ -284,8 +284,8 @@ public final class House {
         }
         for (i = r1; i <= r2; i++) {
             for (j = c1; j <= c2; j++) {
-                A.setRe(i, j, A.re(i, j) - v.re[i - r1] * u.re[j - c1] - v.im[i - r1] * u.im[j - c1]);
-                A.setIm(i, j, A.im(i, j) + v.re[i - r1] * u.im[j - c1] - v.im[i - r1] * u.re[j - c1]);
+                A.addRe(i, j, -v.re[i - r1] * u.re[j - c1] - v.im[i - r1] * u.im[j - c1]);
+                A.addIm(i, j,  v.re[i - r1] * u.im[j - c1] - v.im[i - r1] * u.re[j - c1]);
             }
         }
         return A;

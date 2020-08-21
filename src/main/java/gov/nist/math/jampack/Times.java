@@ -52,8 +52,8 @@ public final class Times {
                     double rekj = B.re(k, j);
                     double imik = A.im(i, k);
                     double reik = A.re(i, k);
-                    C.setRe(i, j, C.re(i, j) + reik * rekj - imik * imkj);
-                    C.setIm(i, j, C.im(i, j) + imik * rekj + reik * imkj);
+                    C.addRe(i, j, reik * rekj - imik * imkj);
+                    C.addIm(i, j, imik * rekj + reik * imkj);
                 }
             }
         }
@@ -73,22 +73,22 @@ public final class Times {
             for (int i = 0; i < A.nc; i++) {
                 double reki = A.re(k, i);
                 double imki = A.im(k, i);
-                C.re[i][i] = C.re[i][i] + reki * reki + imki * imki;
-                C.im[i][i] = 0.0;
+                C.addRe(i, i, reki * reki + imki * imki);
+                C.setIm(i, i, 0.0);
                 for (int j = i + 1; j < A.nc; j++) {
                     double reki_ = A.re(k, i);
                     double rekj_ = A.re(k, j);
                     double imki_ = A.im(k, i);
                     double imkj_ = A.im(k, j);
-                    C.re[i][j] = C.re[i][j] + reki_ * rekj_ + imki_ * imkj_;
-                    C.im[i][j] = C.im[i][j] + reki_ * imkj_ - imki_ * rekj_;
+                    C.addRe(i, j, reki_ * rekj_ + imki_ * imkj_);
+                    C.addIm(i, j, reki_ * imkj_ - imki_ * rekj_);
                 }
             }
         }
         for (int i = 0; i < A.nc; i++) {
             for (int j = i + 1; j < A.nc; j++) {
-                C.re[j][i] = C.re[i][j];
-                C.im[j][i] = -C.im[i][j];
+                C.setRe(j, i, C.re(i, j));
+                C.setIm(j, i, -C.im(i, j));
             }
         }
         return C;
@@ -107,20 +107,20 @@ public final class Times {
             for (int k = 0; k < A.nc; k++) {
                 double reik = A.re(i, k);
                 double imik = A.im(i, k);
-                C.re[i][i] = C.re[i][i] + reik * reik + imik * imik;
+                C.addRe(i, i, reik * reik + imik * imik);
             }
-            C.im[i][i] = 0.0;
+            C.setIm(i, i, 0.0);
             for (int j = i + 1; j < A.nr; j++) {
                 for (int k = 0; k < A.nc; k++) {
                     double reik = A.re(i, k);
                     double rejk = A.re(j, k);
                     double imik = A.im(i, k);
                     double imjk = A.im(j, k);
-                    C.re[i][j] = C.re[i][j] + reik * rejk + imik * imjk;
-                    C.im[i][j] = C.im[i][j] - reik * imjk + imik * rejk;
+                    C.addRe(i, j, reik * rejk + imik * imjk);
+                    C.addIm(i, j, -reik * imjk + imik * rejk);
                 }
-                C.re[j][i] = C.re[i][j];
-                C.im[j][i] = -C.im[i][j];
+                C.setRe(j, i, C.re(i, j));
+                C.setIm(j, i, -C.im(i, j));
             }
         }
         return C;
