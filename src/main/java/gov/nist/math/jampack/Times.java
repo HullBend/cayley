@@ -71,11 +71,17 @@ public final class Times {
         Zmat C = new Zmat(A.nc, A.nc, true);
         for (int k = 0; k < A.nr; k++) {
             for (int i = 0; i < A.nc; i++) {
-                C.re[i][i] = C.re[i][i] + A.re[k][i] * A.re[k][i] + A.im[k][i] * A.im[k][i];
-                C.im[i][i] = 0.;
+                double reki = A.re(k, i);
+                double imki = A.im(k, i);
+                C.re[i][i] = C.re[i][i] + reki * reki + imki * imki;
+                C.im[i][i] = 0.0;
                 for (int j = i + 1; j < A.nc; j++) {
-                    C.re[i][j] = C.re[i][j] + A.re[k][i] * A.re[k][j] + A.im[k][i] * A.im[k][j];
-                    C.im[i][j] = C.im[i][j] + A.re[k][i] * A.im[k][j] - A.im[k][i] * A.re[k][j];
+                    double reki_ = A.re(k, i);
+                    double rekj_ = A.re(k, j);
+                    double imki_ = A.im(k, i);
+                    double imkj_ = A.im(k, j);
+                    C.re[i][j] = C.re[i][j] + reki_ * rekj_ + imki_ * imkj_;
+                    C.im[i][j] = C.im[i][j] + reki_ * imkj_ - imki_ * rekj_;
                 }
             }
         }
@@ -99,13 +105,19 @@ public final class Times {
         Zmat C = new Zmat(A.nr, A.nr, true);
         for (int i = 0; i < A.nr; i++) {
             for (int k = 0; k < A.nc; k++) {
-                C.re[i][i] = C.re[i][i] + A.re[i][k] * A.re[i][k] + A.im[i][k] * A.im[i][k];
+                double reik = A.re(i, k);
+                double imik = A.im(i, k);
+                C.re[i][i] = C.re[i][i] + reik * reik + imik * imik;
             }
-            C.im[i][i] = 0.;
+            C.im[i][i] = 0.0;
             for (int j = i + 1; j < A.nr; j++) {
                 for (int k = 0; k < A.nc; k++) {
-                    C.re[i][j] = C.re[i][j] + A.re[i][k] * A.re[j][k] + A.im[i][k] * A.im[j][k];
-                    C.im[i][j] = C.im[i][j] - A.re[i][k] * A.im[j][k] + A.im[i][k] * A.re[j][k];
+                    double reik = A.re(i, k);
+                    double rejk = A.re(j, k);
+                    double imik = A.im(i, k);
+                    double imjk = A.im(j, k);
+                    C.re[i][j] = C.re[i][j] + reik * rejk + imik * imjk;
+                    C.im[i][j] = C.im[i][j] - reik * imjk + imik * rejk;
                 }
                 C.re[j][i] = C.re[i][j];
                 C.im[j][i] = -C.im[i][j];
