@@ -124,14 +124,18 @@ public final class Rot {
         int j2 = jj2 - 1;
 
         for (int i = i1; i <= i2; i++) {
-            t1r = P.c * A.re[i][j1] - P.sr * A.re[i][j2] - P.si * A.im[i][j2];
-            t1i = P.c * A.im[i][j1] - P.sr * A.im[i][j2] + P.si * A.re[i][j2];
-            t2r = P.c * A.re[i][j2] + P.sr * A.re[i][j1] - P.si * A.im[i][j1];
-            t2i = P.c * A.im[i][j2] + P.sr * A.im[i][j1] + P.si * A.re[i][j1];
-            A.re[i][j1] = t1r;
-            A.im[i][j1] = t1i;
-            A.re[i][j2] = t2r;
-            A.im[i][j2] = t2i;
+            double reij1 = A.re(i, j1);
+            double reij2 = A.re(i, j2);
+            double imij1 = A.im(i, j1);
+            double imij2 = A.im(i, j2);
+            t1r = P.c * reij1 - P.sr * reij2 - P.si * imij2;
+            t1i = P.c * imij1 - P.sr * imij2 + P.si * reij2;
+            t2r = P.c * reij2 + P.sr * reij1 - P.si * imij1;
+            t2i = P.c * imij2 + P.sr * imij1 + P.si * reij1;
+            A.setRe(i, j1, t1r);
+            A.setRe(i, j2, t2r);
+            A.setIm(i, j1, t1i);
+            A.setIm(i, j2, t2i);
         }
     }
 
@@ -161,14 +165,18 @@ public final class Rot {
         int j2 = jj2 - 1;
 
         for (int i = i1; i <= i2; i++) {
-            t1r = P.c * A.re[i][j1] + P.sr * A.re[i][j2] + P.si * A.im[i][j2];
-            t1i = P.c * A.im[i][j1] + P.sr * A.im[i][j2] - P.si * A.re[i][j2];
-            t2r = P.c * A.re[i][j2] - P.sr * A.re[i][j1] + P.si * A.im[i][j1];
-            t2i = P.c * A.im[i][j2] - P.sr * A.im[i][j1] - P.si * A.re[i][j1];
-            A.re[i][j1] = t1r;
-            A.im[i][j1] = t1i;
-            A.re[i][j2] = t2r;
-            A.im[i][j2] = t2i;
+            double reij1 = A.re(i, j1);
+            double reij2 = A.re(i, j2);
+            double imij1 = A.im(i, j1);
+            double imij2 = A.im(i, j2);
+            t1r = P.c * reij1 + P.sr * reij2 + P.si * imij2;
+            t1i = P.c * imij1 + P.sr * imij2 - P.si * reij2;
+            t2r = P.c * reij2 - P.sr * reij1 + P.si * imij1;
+            t2i = P.c * imij2 - P.sr * imij1 - P.si * reij1;
+            A.setRe(i, j1, t1r);
+            A.setRe(i, j2, t2r);
+            A.setIm(i, j1, t1i);
+            A.setIm(i, j2, t2i);
         }
     }
 
@@ -241,8 +249,8 @@ public final class Rot {
 
         Rot.genc(A.re(i1, j), A.im(i1, j), A.re(i2, j), A.im(i2, j), P);
         A.setRe(i1, j, P.zr);
-        A.setIm(i1, j, P.zi);
         A.setRe(i2, j, 0.0);
+        A.setIm(i1, j, P.zi);
         A.setIm(i2, j, 0.0);
     }
 
@@ -272,14 +280,18 @@ public final class Rot {
         int j2 = jj2 - 1;
 
         for (int j = j1; j <= j2; j++) {
-            t1r = P.c * A.re[i1][j] + P.sr * A.re[i2][j] - P.si * A.im[i2][j];
-            t1i = P.c * A.im[i1][j] + P.sr * A.im[i2][j] + P.si * A.re[i2][j];
-            t2r = P.c * A.re[i2][j] - P.sr * A.re[i1][j] - P.si * A.im[i1][j];
-            t2i = P.c * A.im[i2][j] - P.sr * A.im[i1][j] + P.si * A.re[i1][j];
-            A.re[i1][j] = t1r;
-            A.im[i1][j] = t1i;
-            A.re[i2][j] = t2r;
-            A.im[i2][j] = t2i;
+            double rei1j = A.re(i1, j);
+            double rei2j = A.re(i2, j);
+            double imi1j = A.im(i1, j);
+            double imi2j = A.im(i2, j);
+            t1r = P.c * rei1j + P.sr * rei2j - P.si * imi2j;
+            t1i = P.c * imi1j + P.sr * imi2j + P.si * rei2j;
+            t2r = P.c * rei2j - P.sr * rei1j - P.si * imi1j;
+            t2i = P.c * imi2j - P.sr * imi1j + P.si * rei1j;
+            A.setRe(i1, j, t1r);
+            A.setRe(i2, j, t2r);
+            A.setIm(i1, j, t1i);
+            A.setIm(i2, j, t2i);
         }
     }
 }
