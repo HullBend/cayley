@@ -43,16 +43,16 @@ public final class House {
         Z1 u = new Z1(r2 - r1 + 1);
 
         for (i = r1; i <= r2; i++) {
-            u.put(i - r1, A.re[i][c], A.im[i][c]);
-            A.re[i][c] = 0.0;
-            A.im[i][c] = 0.0;
+            u.put(i - r1, A.re(i, c), A.im(i, c));
+            A.setRe(i, c, 0.0);
+            A.setIm(i, c, 0.0);
         }
 
         norm = Norm.fro(u);
 
         if (r1 == r2 || norm == 0.0) {
-            A.re[r1][c] = -u.re[0];
-            A.im[r1][c] = -u.im[0];
+            A.setRe(r1, c, -u.re[0]);
+            A.setIm(r1, c, -u.im[0]);
             u.put(0, 1.4142135623730951, 0.0);
             return u;
         }
@@ -115,16 +115,16 @@ public final class House {
         Z1 u = new Z1(cu);
 
         for (j = c1; j <= c2; j++) {
-            u.put(j - c1, A.re[r][j], A.im[r][j]);
-            A.re[r][j] = 0.0;
-            A.im[r][j] = 0.0;
+            u.put(j - c1, A.re(r, j), A.im(r, j));
+            A.setRe(r, j, 0.0);
+            A.setIm(r, j, 0.0);
         }
 
         norm = Norm.fro(u);
 
         if (c1 == c2 || norm == 0.0) {
-            A.re[r][c1] = -u.re[0];
-            A.im[r][c1] = -u.im[0];
+            A.setRe(r, c1, -u.re[0]);
+            A.setIm(r, c1, -u.im[0]);
             u.put(0, 1.4142135623730951, 0.0);
             return u;
         }
@@ -209,15 +209,17 @@ public final class House {
 
         for (i = r1; i <= r2; i++) {
             for (j = c1; j <= c2; j++) {
-                v.re[j - c1] = v.re[j - c1] + u.re[i - r1] * A.re[i][j] + u.im[i - r1] * A.im[i][j];
-                v.im[j - c1] = v.im[j - c1] + u.re[i - r1] * A.im[i][j] - u.im[i - r1] * A.re[i][j];
+                double reij = A.re(i, j);
+                double imij = A.im(i, j);
+                v.re[j - c1] = v.re[j - c1] + u.re[i - r1] * reij + u.im[i - r1] * imij;
+                v.im[j - c1] = v.im[j - c1] + u.re[i - r1] * imij - u.im[i - r1] * reij;
             }
         }
 
         for (i = r1; i <= r2; i++) {
             for (j = c1; j <= c2; j++) {
-                A.re[i][j] = A.re[i][j] - u.re[i - r1] * v.re[j - c1] + u.im[i - r1] * v.im[j - c1];
-                A.im[i][j] = A.im[i][j] - u.re[i - r1] * v.im[j - c1] - u.im[i - r1] * v.re[j - c1];
+                A.setRe(i, j, A.re(i, j) - u.re[i - r1] * v.re[j - c1] + u.im[i - r1] * v.im[j - c1]);
+                A.setIm(i, j, A.im(i, j) - u.re[i - r1] * v.im[j - c1] - u.im[i - r1] * v.re[j - c1]);
             }
         }
         return A;
@@ -274,14 +276,16 @@ public final class House {
         for (i = r1; i <= r2; i++) {
             v.put(i - r1, 0.0, 0.0);
             for (j = c1; j <= c2; j++) {
-                v.re[i - r1] = v.re[i - r1] + A.re[i][j] * u.re[j - c1] - A.im[i][j] * u.im[j - c1];
-                v.im[i - r1] = v.im[i - r1] + A.re[i][j] * u.im[j - c1] + A.im[i][j] * u.re[j - c1];
+                double reij = A.re(i, j);
+                double imij = A.im(i, j);
+                v.re[i - r1] = v.re[i - r1] + reij * u.re[j - c1] - imij * u.im[j - c1];
+                v.im[i - r1] = v.im[i - r1] + reij * u.im[j - c1] + imij * u.re[j - c1];
             }
         }
         for (i = r1; i <= r2; i++) {
             for (j = c1; j <= c2; j++) {
-                A.re[i][j] = A.re[i][j] - v.re[i - r1] * u.re[j - c1] - v.im[i - r1] * u.im[j - c1];
-                A.im[i][j] = A.im[i][j] + v.re[i - r1] * u.im[j - c1] - v.im[i - r1] * u.re[j - c1];
+                A.setRe(i, j, A.re(i, j) - v.re[i - r1] * u.re[j - c1] - v.im[i - r1] * u.im[j - c1]);
+                A.setIm(i, j, A.im(i, j) + v.re[i - r1] * u.im[j - c1] - v.im[i - r1] * u.re[j - c1]);
             }
         }
         return A;
