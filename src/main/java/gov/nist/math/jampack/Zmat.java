@@ -121,8 +121,8 @@ public final class Zmat {
         re = new double[nr][nc];
         im = new double[nr][nc];
         for (int i = 0; i < nr; i++) {
-            re[i][i] = D.re[i];
-            im[i][i] = D.im[i];
+            re[i][i] = D.re(i);
+            im[i][i] = D.im(i);
         }
     }
 

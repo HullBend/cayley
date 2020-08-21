@@ -239,11 +239,11 @@ public final class Rot {
         int i2 = ii2 - 1;
         int j = jj - 1;
 
-        Rot.genc(A.re[i1][j], A.im[i1][j], A.re[i2][j], A.im[i2][j], P);
-        A.re[i1][j] = P.zr;
-        A.im[i1][j] = P.zi;
-        A.re[i2][j] = 0;
-        A.im[i2][j] = 0;
+        Rot.genc(A.re(i1, j), A.im(i1, j), A.re(i2, j), A.im(i2, j), P);
+        A.setRe(i1, j, P.zr);
+        A.setIm(i1, j, P.zi);
+        A.setRe(i2, j, 0.0);
+        A.setIm(i2, j, 0.0);
     }
 
     /**

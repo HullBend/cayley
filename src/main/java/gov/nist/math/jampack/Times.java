@@ -126,8 +126,10 @@ public final class Times {
     public static Zdiagmat o(Z z, Zdiagmat D) {
         Zdiagmat B = new Zdiagmat(D);
         for (int i = 0; i < D.order; i++) {
-            B.re[i] = z.re * D.re[i] - z.im * D.im[i];
-            B.im[i] = z.im * D.re[i] + z.re * D.im[i];
+            double rei = D.re(i);
+            double imi = D.im(i);
+            B.re[i] = z.re * rei - z.im * imi;
+            B.im[i] = z.im * rei + z.re * imi;
         }
         return B;
     }
@@ -149,8 +151,12 @@ public final class Times {
         }
         Zdiagmat D3 = new Zdiagmat(D1.order);
         for (int i = 0; i < D3.order; i++) {
-            D3.re[i] = D1.re[i] * D2.re[i] - D1.im[i] * D2.im[i];
-            D3.im[i] = D1.re[i] * D2.im[i] + D1.im[i] * D2.re[i];
+            double d1rei = D1.re(i);
+            double d1imi = D1.im(i);
+            double d2rei = D2.re(i);
+            double d2imi = D2.im(i);
+            D3.re[i] = d1rei * d2rei - d1imi * d2imi;
+            D3.im[i] = d1rei * d2imi + d1imi * d2rei;
         }
         return D3;
     }
