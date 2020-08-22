@@ -66,14 +66,14 @@ public final class Zsvd {
         final Z scale = new Z();
         final Z zr = new Z();
 
-        final Zmat X = new Zmat(XX);
+        Zmat X = new Zmat(XX);
 
         Z1 h;
-        final Z1 temp = new Z1(Math.max(X.nr, X.nc));
+        Z1 temp = new Z1(Math.max(X.nr, X.nc));
 
         mc = Math.min(X.nr, X.nc);
-        final double d[] = new double[mc];
-        final double e[] = new double[mc];
+        double[] d = new double[mc];
+        double[] e = new double[mc];
 
         S = new Zdiagmat(mc);
         U = Eye.o(X.nr);
@@ -104,7 +104,7 @@ public final class Zsvd {
             kk = k - 1;
             xkk = X.get(k, k);
             axkk = Z.abs(xkk);
-            X.put(k, k, new Z(axkk));
+            X.put(k, k, axkk, 0.0);
             d[kk] = axkk;
             scale.div(scale.conj(xkk), axkk);
             if (k < X.nc) {
@@ -120,7 +120,7 @@ public final class Zsvd {
 
                 xkk1 = X.get(k, k + 1);
                 axkk1 = Z.abs(xkk1);
-                X.put(k, k + 1, new Z(axkk1));
+                X.put(k, k + 1, axkk1, 0.0);
                 e[kk] = axkk1;
                 scale.div(scale.conj(xkk1), axkk1);
                 if (k < X.nr) {
@@ -277,5 +277,10 @@ public final class Zsvd {
          * Return the decomposition;
          */
         S.setRe(d);
+        X = null;
+        temp = null;
+        h = null;
+        d = null;
+        e = null;
     }
 }
