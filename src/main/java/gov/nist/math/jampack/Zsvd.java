@@ -10,16 +10,16 @@ package gov.nist.math.jampack;
 *               | 0 |
  * </pre>
  * 
- * where S = diag(s1,...,sm) with
+ * where {@code S = diag(s1,...,sm)} with
  * 
  * <pre>
-*     s1 >= s2 >= ... >= sn >=0.
+*     {@code s1 >= s2 >= ... >= sn >=0}.
  * </pre>
  * 
  * If {@code m < n} the decomposition has the form
  * 
  * <pre>
-*     U^H*X*V = | S  0 |,
+*     {@code U^H*X*V = | S  0 |},
  * </pre>
  * 
  * where S is diagonal of order m. The diagonals of S are the singular values of

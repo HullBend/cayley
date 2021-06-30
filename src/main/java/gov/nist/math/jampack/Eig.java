@@ -6,7 +6,7 @@ package gov.nist.math.jampack;
  * X such that
  * 
  * <pre>
- *      D = X<sup>-1</sup> AX
+ *      D = X^-1 AX
  * </pre>
  * 
  * is diagonal. The columns of X are eigenvectors of A corresponding to the

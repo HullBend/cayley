@@ -21,7 +21,7 @@ public final class Z1 {
      * @param n
      *            a positive integer
      * @exception ZException
-     *                Thrown if n<=0.
+     *                Thrown if {@code n<=0}.
      */
     public Z1(int n) throws ZException {
         if (n <= 0) {

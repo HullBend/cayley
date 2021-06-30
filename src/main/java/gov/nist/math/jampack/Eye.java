@@ -10,7 +10,7 @@ package gov.nist.math.jampack;
 public final class Eye {
 
     /**
-     * Generates an identity matrix of order <tt>n</tt>.
+     * Generates an identity matrix of order {@code n}.
      * 
      * @param n the order of the matrix
      */
@@ -19,7 +19,7 @@ public final class Eye {
     }
 
     /**
-     * Generates an <tt>m x n</tt> matrix whose diagonal elements are one and
+     * Generates an {@code m x n} matrix whose diagonal elements are one and
      * whose off diagonal elements are zero.
      * 
      * @param m the number of rows in the matrix

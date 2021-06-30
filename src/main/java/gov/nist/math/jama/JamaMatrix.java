@@ -37,7 +37,6 @@ import java.io.StreamTokenizer;
  * </UL>
  * <DL>
  * <DT><B>Example of use:</B></DT>
- * <p>
  * <DD>Solve a linear system A x = b and compute the residual norm, ||b - A x||.
  * <p>
  * 

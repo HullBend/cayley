@@ -3,9 +3,9 @@ package gov.nist.math.jama;
 /**
  * LU Decomposition.
  * <p>
- * For an m-by-n matrix A with m >= n, the LU decomposition is an m-by-n unit
+ * For an m-by-n matrix A with {@code m >= n}, the LU decomposition is an m-by-n unit
  * lower triangular matrix L, an n-by-n upper triangular matrix U, and a
- * permutation vector piv of length m so that A(piv,:) = L*U. If m < n, then L
+ * permutation vector piv of length m so that {@code A(piv,:) = L*U}. If {@code m < n}, then L
  * is m-by-m and U is m-by-n.
  * <p>
  * The LU decomposition with pivoting always exists, even if the matrix is
