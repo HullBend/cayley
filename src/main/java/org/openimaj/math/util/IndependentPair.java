@@ -45,8 +45,8 @@ import java.util.List;
  */
 public class IndependentPair<A, B> {
 
-    private final A o1;
-    private final B o2;
+    /*package*/ final A o1;
+    /*package*/ final B o2;
 
     /**
      * Constructs a Pair object with two objects obj1 and obj2
