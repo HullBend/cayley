@@ -107,7 +107,7 @@ public class AllEigenvalues extends Eigenvalues {
         }
     }
 
-    private String jobv(boolean canHasVectors) {
+    private static String jobv(boolean canHasVectors) {
         return canHasVectors ? "V" : "N";
     }
 

@@ -11,7 +11,7 @@ public class FewEigenvaluesTest {
     private FewEigenvalues eigen;
     private KuhnMatrix A;
 
-    private KuhnMatrix randomSymetricMatrix(int n) {
+    private static KuhnMatrix randomSymetricMatrix(int n) {
         KuhnMatrix S = KuhnMatrix.dense(n, n);
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < i; j++) {
